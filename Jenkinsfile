@@ -5,19 +5,6 @@ pipeline {
         DOCKER_HUB_REPO = 'usman89/myrepo'
         IMAGE_NAME = 'frapee_atd_0.0.2'
         DOCKERHUB_CREDENTIALS= credentials('dockerhub')
-        // APPS_JSON = '[{"url": "https://x-token-auth:ATCTT3xFfGN01ZGPAktgG5e_SQ02ryC4NimdhgBHl57h0aQ0xsEdNyfyOytjlnCok-ErgKPeyRh24Kw31KtDNKVYxTMeaKNQj0sZL2ze8FGCJgNkbqCzXq_-lMU248UkkdGbOWo-4pVSSIYUDI1WnmpR5UYvO_GqwWys-8QmJcBGxm1M-6lKBnY=39B560F8@bitbucket.org/persona-lworkspace/associated-terminals.git","branch": "master"}]'
-        // APPS_JSON_CONTENT = '''
-        //     [
-        //         {
-        //             "url": "https://x-token-auth:ATCTT3xFfGN01ZGPAktgG5e_SQ02ryC4NimdhgBHl57h0aQ0xsEdNyfyOytjlnCok-ErgKPeyRh24Kw31KtDNKVYxTMeaKNQj0sZL2ze8FGCJgNkbqCzXq_-lMU248UkkdGbOWo-4pVSSIYUDI1WnmpR5UYvO_GqwWys-8QmJcBGxm1M-6lKBnY=39B560F8@bitbucket.org/persona-lworkspace/associated-terminals.git",
-        //             "branch": "master"
-        //         }
-        //     ]
-        // '''
-
-        // // Base64 encode the apps.json content
-        // APPS_JSON_BASE64 = sh(script: "echo \$(echo '${APPS_JSON_CONTENT}' | base64)", returnStdout: true)
-        // APPS_JSON_BASE64 = sh(script: "echo \$(echo '${APPS_JSON_CONTENT}' | base64)", returnStdout: true)
     
     }
     stages {
@@ -40,22 +27,6 @@ pipeline {
                 }
             }
         }
-          stage('echo'){
-            steps{
-                sh 'echo $APPS_JSON_BASE64'
-            }
-        }
-        // stage('Example Stage') {
-        //     steps {
-        //         script {
-        //             // Add the line to export APPS_JSON_BASE64
-        //             sh 'export APPS_JSON_BASE64=$(echo ${APPS_JSON} | base64 -w 0)'
-                    
-        //             // Your other steps go here
-        //             // ...
-        //         }
-        //     }
-        // }
         stage('Build Docker Image') {
             steps {
                 script {
@@ -111,17 +82,6 @@ pipeline {
                 }
             }
         }
-        // stage('test1'){
-        //     steps{
-        //         sh 'export APPS_JSON='[
-        //             {
-        //                 "url": "https://x-token-auth:ATCTT3xFfGN01ZGPAktgG5e_SQ02ryC4NimdhgBHl57h0aQ0xsEdNyfyOytjlnCok-ErgKPeyRh24Kw31KtDNKVYxTMeaKNQj0sZL2ze8FGCJgNkbqCzXq_-lMU248UkkdGbOWo-4pVSSIYUDI1WnmpR5UYvO_GqwWys-8QmJcBGxm1M-6lKBnY=39B560F8@bitbucket.org/persona-lworkspace/associated-terminals.git",
-        //                 "branch": "master"
-        //             }
-        //             ]'
-        //             export APPS_JSON_BASE64=$(echo ${APPS_JSON} | base64 -w 0)'
-        //     }
-        // }
         
     }
 }
