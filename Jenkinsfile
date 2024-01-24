@@ -87,7 +87,7 @@ pipeline {
         //         }
         //     }
         // }
-        stage('SSH to 114'){
+        stage('test'){
          steps{
             sshagent(credentials:['114']){
                script {
