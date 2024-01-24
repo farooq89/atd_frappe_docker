@@ -92,8 +92,8 @@ pipeline {
             sshagent(credentials:['114']){
                script {
                         sh '''
-                           ls
-                            "
+                           ls \\
+                           && cat apps.json
                        '''
                     }
                 }
