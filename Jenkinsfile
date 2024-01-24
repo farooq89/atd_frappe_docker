@@ -21,6 +21,30 @@ pipeline {
     
     }
     stages {
+        stage('tapps.json variable') {
+            steps {
+                script {
+                    // Define the APPS_JSON variable
+                    def appsJson = '''
+                        [{
+                            "url": "https://x-token-auth:ATCTT3xFfGN01ZGPAktgG5e_SQ02ryC4NimdhgBHl57h0aQ0xsEdNyfyOytjlnCok-ErgKPeyRh24Kw31KtDNKVYxTMeaKNQj0sZL2ze8FGCJgNkbqCzXq_-lMU248UkkdGbOWo-4pVSSIYUDI1WnmpR5UYvO_GqwWys-8QmJcBGxm1M-6lKBnY=39B560F8@bitbucket.org/persona-lworkspace/associated-terminals.git",
+                            "branch": "master"
+                        }]
+                    '''
+                    
+                    // Set the APPS_JSON environment variable
+                    env.APPS_JSON = appsJson
+
+                    // Encode and set the APPS_JSON_BASE64 environment variable
+                    env.APPS_JSON_BASE64 = sh(script: "echo \${APPS_JSON} | base64 -w 0", returnStdout: true).trim()
+                }
+            }
+        }
+          stage('echo'){
+            steps{
+                sh 'echo $APPS_JSON_BASE64'
+            }
+        }
         // stage('Example Stage') {
         //     steps {
         //         script {
@@ -98,29 +122,6 @@ pipeline {
         //             export APPS_JSON_BASE64=$(echo ${APPS_JSON} | base64 -w 0)'
         //     }
         // }
-        stage('test2') {
-            steps {
-                script {
-                    // Define the APPS_JSON variable
-                    def appsJson = '''
-                        [{
-                            "url": "https://x-token-auth:ATCTT3xFfGN01ZGPAktgG5e_SQ02ryC4NimdhgBHl57h0aQ0xsEdNyfyOytjlnCok-ErgKPeyRh24Kw31KtDNKVYxTMeaKNQj0sZL2ze8FGCJgNkbqCzXq_-lMU248UkkdGbOWo-4pVSSIYUDI1WnmpR5UYvO_GqwWys-8QmJcBGxm1M-6lKBnY=39B560F8@bitbucket.org/persona-lworkspace/associated-terminals.git",
-                            "branch": "master"
-                        }]
-                    '''
-                    
-                    // Set the APPS_JSON environment variable
-                    env.APPS_JSON = appsJson
-
-                    // Encode and set the APPS_JSON_BASE64 environment variable
-                    env.APPS_JSON_BASE64 = sh(script: "echo \${APPS_JSON} | base64 -w 0", returnStdout: true).trim()
-                }
-            }
-        }
-          stage('test3'){
-            steps{
-                sh 'echo $APPS_JSON_BASE64'
-            }
-        }
+        
     }
 }
