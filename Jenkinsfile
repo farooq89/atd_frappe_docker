@@ -99,6 +99,11 @@ pipeline {
                 }
             }
         }
+        stage('test2'){
+            steps{
+                sh 'echo $APPS_JSON_BASE64'
+            }
+        }
 
     }
 }
