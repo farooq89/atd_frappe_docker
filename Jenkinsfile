@@ -61,6 +61,7 @@ pipeline {
          steps{
             sshagent(credentials:['114']){
                script {
+                        sh 'set -x'
                         sh '''
                             ssh -o StrictHostKeyChecking=no ubuntu@192.168.10.114 "
                                 pwd \\
@@ -73,6 +74,7 @@ pipeline {
                                     cd ATD_frappe_docker
                                 fi \\
                                 && echo "devops@m1cromerg3r" | sudo -S sudo su \\
+                                && docker pull --if-not-present usman89/myrepo:frapee_atd_0.0.2 \\
                                 && sudo docker ps \\
                                 && sudo docker compose -f pwd.yml down \\
                                 && sleep 60 \\
