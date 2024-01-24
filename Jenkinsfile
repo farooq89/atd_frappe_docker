@@ -61,26 +61,38 @@ pipeline {
                 }
             }
         }
+        // stage('SSH to 114'){
+        //  steps{
+        //     sshagent(credentials:['114']){
+        //        script {
+        //                 sh '''
+        //                     ssh -o StrictHostKeyChecking=no ubuntu@192.168.10.114 "
+        //                         pwd \\
+        //                         && if [ -d docker_frappe ]
+        //                         then
+        //                             cd docker_frappe
+        //                             git pull
+        //                         else
+        //                             git clone https://github.com/farooq89/ATD_frappe_docker.git
+        //                             cd ATD_frappe_docker
+        //                         fi \\
+        //                         && echo "devops@m1cromerg3r" | sudo -S sudo su \\
+        //                         && sudo docker ps \\
+        //                         && sudo docker compose -f pwd.yml down \\
+        //                         && sleep 60 \\
+        //                         && sudo docker compose -f pwd.yml up
+        //                     "
+        //                '''
+        //             }
+        //         }
+        //     }
+        // }
         stage('SSH to 114'){
          steps{
             sshagent(credentials:['114']){
                script {
                         sh '''
-                            ssh -o StrictHostKeyChecking=no ubuntu@192.168.10.114 "
-                                pwd \\
-                                && if [ -d docker_frappe ]
-                                then
-                                    cd docker_frappe
-                                    git pull
-                                else
-                                    git clone https://github.com/farooq89/ATD_frappe_docker.git
-                                    cd ATD_frappe_docker
-                                fi \\
-                                && echo "devops@m1cromerg3r" | sudo -S sudo su \\
-                                && sudo docker ps \\
-                                && sudo docker compose -f pwd.yml down \\
-                                && sleep 60 \\
-                                && sudo docker compose -f pwd.yml up
+                           ls
                             "
                        '''
                     }
