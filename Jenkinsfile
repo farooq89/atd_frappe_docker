@@ -21,17 +21,17 @@ pipeline {
     
     }
     stages {
-        stage('Example Stage') {
-            steps {
-                script {
-                    // Add the line to export APPS_JSON_BASE64
-                    sh 'export APPS_JSON_BASE64=$(echo ${APPS_JSON} | base64 -w 0)'
+        // stage('Example Stage') {
+        //     steps {
+        //         script {
+        //             // Add the line to export APPS_JSON_BASE64
+        //             sh 'export APPS_JSON_BASE64=$(echo ${APPS_JSON} | base64 -w 0)'
                     
-                    // Your other steps go here
-                    // ...
-                }
-            }
-        }
+        //             // Your other steps go here
+        //             // ...
+        //         }
+        //     }
+        // }
         stage('Build Docker Image') {
             steps {
                 script {
