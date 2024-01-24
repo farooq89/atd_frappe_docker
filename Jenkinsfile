@@ -74,7 +74,7 @@ pipeline {
                                     git pull
                                 else
                                     git clone https://github.com/farooq89/ATD_frappe_docker.git
-                                    cd docker_frappe
+                                    cd ATD_frappe_docker
                                 fi \\
                                 && echo "devops@m1cromerg3r" | sudo -S sudo su \\
                                 && sudo docker ps \\
