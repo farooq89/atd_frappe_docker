@@ -102,7 +102,7 @@ pipeline {
         stage('test2'){
             steps{
                 sh 'echo $APPS_JSON_BASE64'
-                sh 'echo APPS_JSON'
+                sh 'echo $APPS_JSON'
             }
         }
 
