@@ -69,18 +69,12 @@ pipeline {
                                     cd ATD_frappe_docker
                                     echo "devops@m1cromerg3r" | sudo -S sudo su
                                     sudo git pull
-                                    echo "1"
                                 else
-                                    echo "2"
                                     git clone https://github.com/farooq89/ATD_frappe_docker.git
                                     cd ATD_frappe_docker
-                                    echo "3"
                                 fi \\
-                                && sudo docker ps \\
-                                && sudo docker pull usman89/myrepo:frapee_atd_0.0.2 \\
-                                && echo "7" \\
+                                sudo docker pull usman89/myrepo:frapee_atd_0.0.2 \\
                                 && sudo docker compose -f pwd.yml down \\
-                                && echo "8" \\
                                 && sleep 10 \\
                                 && sudo docker compose -f pwd.yml up
                             "
