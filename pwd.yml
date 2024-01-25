@@ -35,7 +35,7 @@ services:
       DB_PORT: "3306"
       REDIS_CACHE: redis-cache:6379
       REDIS_QUEUE: redis-queue:6379
-      SOCKETIO_PORT: "9000"
+      SOCKETIO_PORT: "8080"
     volumes:
       - sites:/home/frappe/frappe-bench/sites
       - logs:/home/frappe/frappe-bench/logs
@@ -57,7 +57,7 @@ services:
       REDIS_CACHE: redis-cache:6379
       REDIS_QUEUE: redis-queue:6379
       MYSQL_ROOT_PASSWORD: admin
-      SOCKETIO_PORT: "9000"
+      SOCKETIO_PORT: "8080"
     command:
       - >
         wait-for-it -t 120 db:3306;
@@ -114,7 +114,7 @@ services:
     environment:
       BACKEND: backend:8000
       FRAPPE_SITE_NAME_HEADER: frontend
-      SOCKETIO: websocket:9000
+      SOCKETIO: websocket:8080
       UPSTREAM_REAL_IP_ADDRESS: 127.0.0.1
       UPSTREAM_REAL_IP_HEADER: X-Forwarded-For
       UPSTREAM_REAL_IP_RECURSIVE: "off"
