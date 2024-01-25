@@ -70,7 +70,7 @@ pipeline {
                                     ls
                                     pwd
                                     echo "123"
-                                    git pull
+                                    git status
                                 else
                                     git clone https://github.com/farooq89/ATD_frappe_docker.git
                                     cd ATD_frappe_docker
