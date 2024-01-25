@@ -77,21 +77,6 @@ services:
         done;
         echo "sites/common_site_config.json found";
         bench new-site --no-mariadb-socket --admin-password=admin --db-root-password=admin --set-default frontend;
-        # echo "associated_terminal" >> sites/apps.txt;
-        # pwd;
-        # cd;
-        # pwd;
-        # cd frappe-bench/;
-        # pwd;
-        # bench --site frontend install-app associated_terminals;
-        # bench migrate;
-        # cd apps/;
-        # pwd;
-        # bench --site frontend install-app associated_terminals;
-        # bench --site frontend migrate;
-        # rm -rf associated_terminals/;
-        # echo "associated_terminal" >> apps.txt;
-        # sleep 60;
         bash -c '
           bench --site frontend install-app associated_terminals;
           bench migrate;
