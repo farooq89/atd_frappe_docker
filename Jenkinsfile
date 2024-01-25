@@ -70,13 +70,13 @@ pipeline {
                                     ls
                                     pwd
                                     echo "123"
-                                    git status
+                                    sudo git pull
                                 else
                                     git clone https://github.com/farooq89/ATD_frappe_docker.git
                                     cd ATD_frappe_docker
                                 fi \\
                                 && echo "devops@m1cromerg3r" | sudo -S sudo su \\
-                                && docker pull usman89/myrepo:frapee_atd_0.0.2 \\
+                                && sudo docker pull usman89/myrepo:frapee_atd_0.0.2 \\
                                 && sudo docker ps \\
                                 && sudo docker compose -f pwd.yml down \\
                                 && sleep 10 \\
