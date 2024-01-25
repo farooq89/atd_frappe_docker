@@ -64,7 +64,7 @@ pipeline {
                         sh '''
                             ssh -o StrictHostKeyChecking=no ubuntu@192.168.10.114 "
                                 pwd \\
-                                && if [ -d docker_frappe ]
+                                && if [ -d ATD_frappe_docker ]
                                 then
                                     cd ATD_frappe_docker
                                     git pull
