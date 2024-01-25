@@ -67,6 +67,8 @@ pipeline {
                                 && if [ -d ATD_frappe_docker ]
                                 then
                                     cd ATD_frappe_docker
+                                    ls
+                                    pwd
                                     git pull
                                 else
                                     git clone https://github.com/farooq89/ATD_frappe_docker.git
