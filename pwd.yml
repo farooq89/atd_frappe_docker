@@ -79,7 +79,7 @@ services:
         bench new-site --no-mariadb-socket --admin-password=admin --db-root-password=admin --set-default frontend;
         bash -c '
           bench --site frontend install-app associated_terminals;
-          bench migrate;
+          bench --site frontend migrate;
         ';
 
   db:
