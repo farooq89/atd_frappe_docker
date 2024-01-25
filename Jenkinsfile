@@ -69,10 +69,14 @@ pipeline {
                                     cd ATD_frappe_docker
                                     echo "devops@m1cromerg3r" | sudo -S sudo su
                                     sudo git pull
+                                    echo "1"
                                 else
+                                    echo "2"
                                     git clone https://github.com/farooq89/ATD_frappe_docker.git
                                     cd ATD_frappe_docker
+                                    echo "3"
                                 fi \\
+                                && echo "4"
                                 && echo "devops@m1cromerg3r" | sudo -S sudo su \\
                                 && sudo docker pull usman89/myrepo:frapee_atd_0.0.2 \\
                                 && sudo docker ps \\
