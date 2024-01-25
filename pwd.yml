@@ -84,6 +84,8 @@ services:
         pwd;
         cd frappe-bench/;
         pwd;
+        bench --site frontend install-app associated_terminals;
+        bench migrate;
         cd apps/;
         pwd;
         # bench --site frontend install-app associated_terminals;
