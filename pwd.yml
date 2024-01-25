@@ -63,7 +63,6 @@ services:
         wait-for-it -t 120 db:3306;
         wait-for-it -t 120 redis-cache:6379;
         wait-for-it -t 120 redis-queue:6379;
-        curl -fsSL https://deb.nodesource.com/setup_20.x ;
         export start=`date +%s`;
         until [[ -n `grep -hs ^ sites/common_site_config.json | jq -r ".db_host // empty"` ]] && \
           [[ -n `grep -hs ^ sites/common_site_config.json | jq -r ".redis_cache // empty"` ]] && \
@@ -79,31 +78,24 @@ services:
         echo "sites/common_site_config.json found";
         bench new-site --no-mariadb-socket --admin-password=admin --db-root-password=admin --set-default frontend;
         # echo "associated_terminal" >> sites/apps.txt;
-        pwd;
-        cd;
-        pwd;
-        cd frappe-bench/;
-        pwd;
-        bench --site frontend install-app associated_terminals;
-        bench migrate;
-        cd apps/;
-        pwd;
+        # pwd;
+        # cd;
+        # pwd;
+        # cd frappe-bench/;
+        # pwd;
+        # bench --site frontend install-app associated_terminals;
+        # bench migrate;
+        # cd apps/;
+        # pwd;
         # bench --site frontend install-app associated_terminals;
         # bench --site frontend migrate;
         # rm -rf associated_terminals/;
         # echo "associated_terminal" >> apps.txt;
         # sleep 60;
-        # bash -c '
-        #   if [[ -d /home/frappe/frappe-bench/apps/associated_terminals ]]; then
-        #     echo "The '\''associated_terminals'\'' app already exists. Exiting.";
-        #     exit 0;
-        #   else
-        #     echo "The '\''associated_terminals'\'' app does not exist. Fetching...";
-        #     bench get-app https://x-token-auth:ATCTT3xFfGN01ZGPAktgG5e_SQ02ryC4NimdhgBHl57h0aQ0xsEdNyfyOytjlnCok-ErgKPeyRh24Kw31KtDNKVYxTMeaKNQj0sZL2ze8FGCJgNkbqCzXq_-lMU248UkkdGbOWo-4pVSSIYUDI1WnmpR5UYvO_GqwWys-8QmJcBGxm1M-6lKBnY=39B560F8@bitbucket.org/persona-lworkspace/associated-terminals.git;
-        #     echo "Installing '\''associated_terminals'\'' app...";
-        #     bench --site frontend install-app associated_terminals;
-        #   fi;
-        # ';
+        bash -c '
+          bench --site frontend install-app associated_terminals;
+          bench migrate;
+        ';
 
   db:
     image: mariadb:10.6
