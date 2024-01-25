@@ -88,7 +88,7 @@ pipeline {
     post {
         always {
             script {
-                slackSend(channel: '#atd-notifications', color: 'good', message: "containers are up and running")
+                slackSend(channel: '#atd-notifications', color: 'good', message: "Build successfull on 192.168.10.114")
             }
         }
         failure {
