@@ -8,7 +8,7 @@ pipeline {
     
     }
     stages {
-        stage('tapps.json variable') {
+        stage('apps.json variable') {
             steps {
                 script {
                     // Define the APPS_JSON variable
