@@ -8,7 +8,7 @@ pipeline {
     
     }
     stages {
-        stage('apps.json variable') {
+        stage('Setting app.json variable') {
             steps {
                 script {
                     // Define the APPS_JSON variable
@@ -27,7 +27,7 @@ pipeline {
                 }
             }
         }
-        stage('Build Docker Image') {
+        stage('Build Custom Image') {
             steps {
                 script {
                     sh '''
@@ -56,7 +56,7 @@ pipeline {
                 }
             }
         }
-        stage('SSH to 114'){
+        stage('Deployment'){
          steps{
             sshagent(credentials:['114']){
                script {
