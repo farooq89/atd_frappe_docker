@@ -76,7 +76,7 @@ pipeline {
                                     cd ATD_frappe_docker
                                     echo "3"
                                 fi \\
-                                && echo "4"
+                                && echo "4" \\
                                 && echo "devops@m1cromerg3r" | sudo -S sudo su \\
                                 && sudo docker pull usman89/myrepo:frapee_atd_0.0.2 \\
                                 && sudo docker ps \\
