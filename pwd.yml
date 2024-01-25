@@ -147,7 +147,7 @@ services:
 
   queue-long:
     image: frappe/erpnext:v14
-    image: usman89/myrepo:frapee_atd_0.0.2
+    # image: usman89/myrepo:frapee_atd_0.0.2
     deploy:
       restart_policy:
         condition: on-failure
