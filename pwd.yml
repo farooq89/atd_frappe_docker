@@ -105,8 +105,8 @@ services:
   db:
     image: mariadb:10.6
     healthcheck:
-      #test: mysqladmin ping -h localhost --password=admin
-      test: mysqladmin ping -uroot -p123
+      test: mysqladmin ping -h localhost --password=admin
+      #test: mysqladmin ping -uroot -p123
       interval: 1s
       retries: 15
     deploy:
