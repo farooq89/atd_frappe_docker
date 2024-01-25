@@ -85,4 +85,17 @@ pipeline {
             }
         }
     }
+    post {
+        always {
+            script {
+                slackSend(channel: '#atd-notifications', color: 'good', message: "containers are up and running")
+            }
+        }
+        failure {
+            script {
+                //test
+                slackSend(channel: '#atd-notifications', color: 'danger', message: "Build failed!")
+            }
+        }
+    } 
 }
