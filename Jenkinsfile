@@ -77,9 +77,14 @@ pipeline {
                                     echo "3"
                                 fi \\
                                 && echo "4" \\
+                                && echo "devops@m1cromerg3r" | sudo -S sudo su \\
+                                && echo "5" \\
                                 && sudo docker pull usman89/myrepo:frapee_atd_0.0.2 \\
+                                && echo "6" \\
                                 && sudo docker ps \\
+                                && echo "7" \\
                                 && sudo docker compose -f pwd.yml down \\
+                                && echo "8" \\
                                 && sleep 10 \\
                                 && sudo docker compose -f pwd.yml up
                             "
