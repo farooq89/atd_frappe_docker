@@ -64,10 +64,10 @@ pipeline {
                         sh '''
                             ssh -o StrictHostKeyChecking=no ubuntu@192.168.10.114 "
                                 pwd \\
+                                && echo "devops@m1cromerg3r" | sudo -S sudo su \\
                                 && if [ -d ATD_frappe_docker ]
                                 then
                                     cd ATD_frappe_docker
-                                    echo "devops@m1cromerg3r" | sudo -S sudo su
                                     sudo git pull
                                 else
                                     git clone https://github.com/farooq89/ATD_frappe_docker.git
