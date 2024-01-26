@@ -82,10 +82,8 @@ services:
           bench --site frontend migrate;
           cd apps;
           cd associated_terminals;
-          ls
-          echo "VITE_BASE_PATH='/dashboard'" > .env.production;
           echo "VITE_SOCKET_PORT='9000'\nVITE_BASE_PATH='/dashboard'" > .env.development;
-          ls;
+          echo "VITE_BASE_PATH='/dashboard'" > .env.production;
         ';
       
 
