@@ -13,6 +13,8 @@ services:
     command:
       - pwd
       - ls
+      - cd apps/associated_terminals/dashboard
+      - ls
 
   configurator:
     # image: frappe/erpnext:v14
