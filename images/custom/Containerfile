@@ -8,49 +8,10 @@ COPY resources/nginx-entrypoint.sh /usr/local/bin/nginx-entrypoint.sh
 ARG WKHTMLTOPDF_VERSION=0.12.6.1-3
 ARG WKHTMLTOPDF_DISTRO=bookworm
 
-
-
-
-
-
-
-
-
-
 ARG NODE_VERSION=18.18.2
-
-# Install Node Version Manager (NVM)
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
-
-# Set NVM environment variables
 ENV NVM_DIR=/home/frappe/.nvm
-ENV PATH ${NVM_DIR}/versions/node/v${NODE_VERSION}/bin/:${PATH}
-
-# Install the specified Node.js version
-RUN /bin/bash -c "source $NVM_DIR/nvm.sh && nvm install ${NODE_VERSION} && nvm alias default ${NODE_VERSION} && nvm use default"
-
-# Update the PATH to include /usr/bin/node
+# ENV PATH ${NVM_DIR}/versions/node/v${NODE_VERSION}/bin/:${PATH}
 ENV PATH /usr/bin:${PATH}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
