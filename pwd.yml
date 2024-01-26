@@ -83,8 +83,8 @@ services:
           cd apps;
           cd associated_terminals;
           cd dashboard;
-          echo "VITE_SOCKET_PORT='9000'\nVITE_BASE_PATH='/dashboard'" > .env.development;
-          echo "VITE_BASE_PATH='/dashboard'" > .env.production;
+          # echo "VITE_SOCKET_PORT='9000'\nVITE_BASE_PATH='/dashboard'" > .env.development;
+          # echo "VITE_BASE_PATH='/dashboard'" > .env.production;
         ';
       
 
