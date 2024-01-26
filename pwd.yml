@@ -123,11 +123,6 @@ services:
         condition: on-failure
     command:
       - nginx-entrypoint.sh
-      - cd apps;
-      - cd associated_terminals;
-      - cd dashboard;
-      - touch "VITE_SOCKET_PORT='9000'\nVITE_BASE_PATH='/dashboard'" > .env.development;
-      - touch "VITE_BASE_PATH='/dashboard'" > .env.production;
     environment:
       BACKEND: backend:8000
       FRAPPE_SITE_NAME_HEADER: frontend
