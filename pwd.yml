@@ -80,9 +80,13 @@ services:
         bash -c '
           bench --site frontend install-app associated_terminals;
           bench --site frontend migrate;
+          cd apps;
+          cd associated_terminals;
+          ls
+          echo "VITE_BASE_PATH='/dashboard'" > .env.production;
+          echo "VITE_SOCKET_PORT='9000'\nVITE_BASE_PATH='/dashboard'" > .env.development;
         ';
-      - node
-      - /home/frappe/frappe-bench/apps/frappe/socketio.js
+      
 
   db:
     image: mariadb:10.6
