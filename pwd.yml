@@ -194,7 +194,7 @@ services:
       restart_policy:
         condition: on-failure
     command:
-      - /usr/bin/node
+      - /home/frappe/.nvm/versions/node/v18.18.2/bin/node
       - /home/frappe/frappe-bench/apps/frappe/socketio.js
     volumes:
       - sites:/home/frappe/frappe-bench/sites
