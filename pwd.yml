@@ -77,6 +77,7 @@ services:
         done;
         echo "sites/common_site_config.json found";
         bench new-site --no-mariadb-socket --admin-password=admin --db-root-password=admin --set-default frontend;
+        pwd;
         cd apps;
         cd associated_terminals;
         cd dashboard;
