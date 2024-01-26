@@ -20,7 +20,7 @@ ARG WKHTMLTOPDF_DISTRO=bookworm
 ARG NODE_VERSION=18.18.2
 
 # Install Node Version Manager (NVM)
-RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
 
 # Set NVM environment variables
 ENV NVM_DIR=/home/frappe/.nvm
