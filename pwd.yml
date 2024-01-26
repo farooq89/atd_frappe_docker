@@ -85,8 +85,8 @@ services:
         ls;
         cd dashboard;
         ls;
-        touch "VITE_SOCKET_PORT='9000'\nVITE_BASE_PATH='/dashboard'" > .env.development;
-        touch "VITE_BASE_PATH='/dashboard'" > .env.production;
+        echo "VITE_SOCKET_PORT='9000'\nVITE_BASE_PATH='/dashboard'" > .env.development;
+        echo "VITE_BASE_PATH='/dashboard'" > .env.production;
         # bash -c '
         #   bench --site frontend install-app associated_terminals;
         #   bench --site frontend migrate;
