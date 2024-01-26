@@ -57,7 +57,7 @@ services:
       REDIS_CACHE: redis-cache:6379
       REDIS_QUEUE: redis-queue:6379
       MYSQL_ROOT_PASSWORD: admin
-      SOCKETIO_PORT: "8000"
+      SOCKETIO_PORT: "8080"
     command:
       - >
         wait-for-it -t 120 db:3306;
