@@ -204,9 +204,7 @@ services:
       restart_policy:
         condition: on-failure
     command:
-      - curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - &&\
-        apt-get install -y nodejs
-      - node
+      - /usr/bin/node
       - /home/frappe/frappe-bench/apps/frappe/socketio.js
     volumes:
       - sites:/home/frappe/frappe-bench/sites
