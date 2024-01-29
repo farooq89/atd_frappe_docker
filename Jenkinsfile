@@ -88,16 +88,27 @@ pipeline {
         }
     }
     post {
-        always {
-            script {
-                slackSend(channel: '#atd-notifications', color: 'good', message: "Build successfull on 192.168.10.114")
-            }
-        }
-        failure {
-            script {
-                //test
+    always {
+        script {
+            if (currentBuild.resultIsBetterOrEqualTo("SUCCESS")) {
+                slackSend(channel: '#atd-notifications', color: 'good', message: "Build successful on 192.168.10.114")
+            } else {
                 slackSend(channel: '#atd-notifications', color: 'danger', message: "Build failed!")
+                }
             }
         }
-    } 
+    }
+    // post {
+    //     always {
+    //         script {
+    //             slackSend(channel: '#atd-notifications', color: 'good', message: "Build successfull on 192.168.10.114")
+    //         }
+    //     }
+    //     failure {
+    //         script {
+    //             //test
+    //             slackSend(channel: '#atd-notifications', color: 'danger', message: "Build failed!")
+    //         }
+    //     }
+    // } 
 }
