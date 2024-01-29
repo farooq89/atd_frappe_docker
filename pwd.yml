@@ -88,8 +88,6 @@ services:
           cd apps;
           cd associated_terminals;
           cd dashboard;
-          touch "VITE_SOCKET_PORT='9000'\nVITE_BASE_PATH='/dashboard'" > .env.development;
-          touch "VITE_BASE_PATH='/dashboard'" > .env.production;
         ';
       
 
