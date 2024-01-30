@@ -78,7 +78,7 @@ pipeline {
                                 && sudo docker compose -f pwd.yml down \\
                                 && sleep 10 \\
                                 && sudo docker compose -f pwd.yml up -d \\
-                                && sleep 200
+                                && sleep 100
                             "
                        '''
                     }
