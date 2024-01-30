@@ -90,9 +90,9 @@ pipeline {
     always {
         script {
             if (currentBuild.resultIsBetterOrEqualTo("SUCCESS")) {
-                slackSend(channel: '#atd-notifications', color: 'good', message: "Build successful on 192.168.10.114")
+                slackSend(channel: '#atd_notifications', color: 'good', message: "Build successful on 192.168.10.114")
             } else {
-                slackSend(channel: '#atd-notifications', color: 'danger', message: "Build failed!")
+                slackSend(channel: '#atd_notifications', color: 'danger', message: "Build failed!")
                 }
             }
         }
