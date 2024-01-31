@@ -97,17 +97,4 @@ pipeline {
             }
         }
     }
-    // post {
-    //     always {
-    //         script {
-    //             slackSend(channel: '#atd-notifications', color: 'good', message: "Build successfull on 192.168.10.114")
-    //         }
-    //     }
-    //     failure {
-    //         script {
-    //             //test
-    //             slackSend(channel: '#atd-notifications', color: 'danger', message: "Build failed!")
-    //         }
-    //     }
-    // } 
 }
