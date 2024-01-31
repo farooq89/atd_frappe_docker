@@ -76,10 +76,10 @@ services:
           fi
         done;
         echo "sites/common_site_config.json found";
-        bench new-site --no-mariadb-socket --admin-password=admin --db-root-password=admin --set-default atd.mmis.space;
+        bench new-site --no-mariadb-socket --admin-password=admin --db-root-password=admin --set-default site;
         bash -c '
-          bench --site atd.mmis.space install-app associated_terminals;
-          bench --site atd.mmis.space migrate;
+          bench --site site install-app associated_terminals;
+          bench --site site migrate;
           cd apps;
           cd associated_terminals;
           cd dashboard;
@@ -119,7 +119,7 @@ services:
 
     environment:
       BACKEND: backend:8000
-      FRAPPE_SITE_NAME_HEADER: atd.mmis.space
+      FRAPPE_SITE_NAME_HEADER: site
       SOCKETIO: websocket:9000
       UPSTREAM_REAL_IP_ADDRESS: 127.0.0.1
       UPSTREAM_REAL_IP_HEADER: X-Forwarded-For
