@@ -62,49 +62,6 @@ services:
     ports:
       - "8080:8080"
 
-  create-site:
-    image: usman89/myrepo:frapee_atd_0.0.2
-    deploy:
-      restart_policy:
-        condition: none
-    
-    entrypoint:
-      - bash
-      - -c
-    environment:
-      DB_HOST: db
-      DB_PORT: "3306"
-      REDIS_CACHE: redis-cache:6379
-      REDIS_QUEUE: redis-queue:6379
-      MYSQL_ROOT_PASSWORD: admin
-      SOCKETIO_PORT: "9000"
-    command:
-      - >
-        wait-for-it -t 120 db:3306;
-        wait-for-it -t 120 redis-cache:6379;
-        wait-for-it -t 120 redis-queue:6379;
-        export start=`date +%s`;
-        until [[ -n `grep -hs ^ sites/common_site_config.json | jq -r ".db_host // empty"` ]] && \
-          [[ -n `grep -hs ^ sites/common_site_config.json | jq -r ".redis_cache // empty"` ]] && \
-          [[ -n `grep -hs ^ sites/common_site_config.json | jq -r ".redis_queue // empty"` ]];
-        do
-          echo "Waiting for sites/common_site_config.json to be created";
-          sleep 5
-          if (( `date +%s`-start > 120 )); then
-            echo "could not find sites/common_site_config.json with required keys";
-            exit 1
-          fi
-        done;
-        echo "sites/common_site_config.json found";
-        bench new-site --no-mariadb-socket --admin-password=admin --db-root-password=admin --set-default atd.mmis.space;
-        bash -c '
-          bench --site atd.mmis.space install-app associated_terminals;
-          bench --site atd.mmis.space migrate;
-          cd apps;
-          cd associated_terminals;
-          cd dashboard;
-        ';
-
   websocket:
     <<: [*depends_on_configurator, *customizable_image]
     command:
