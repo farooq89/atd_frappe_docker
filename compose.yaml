@@ -63,7 +63,7 @@ services:
       - "8080:8080"
 
   create-site:
-    image: usman89/myrepo:frapee_atd_0.0.4
+    image: usman89/myrepo:frapee_atd_0.0.2
     deploy:
       restart_policy:
         condition: none
