@@ -84,7 +84,7 @@ services:
           new_data='"'"'{"allow_cors": "*", "ignore_csrf": 1}'"'"';
 
           # Path to your common_site_config file
-          config_file="/home/frappe/frappe-bench/sites/atd.mmis.space/common_site_config.json";
+          config_file="/home/frappe/frappe-bench/sites/common_site_config.json";
 
           # Update the file with the new data using jq
           jq '. + '"$new_data"'' "$config_file" > "$config_file.tmp" && mv "$config_file.tmp" "$config_file";
