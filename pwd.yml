@@ -82,6 +82,7 @@ services:
           bench --site atd.mmis.space migrate;
           cd sites;
           ls;
+          cat common_site_config.json;
           ';
 
   db:
