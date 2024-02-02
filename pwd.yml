@@ -82,21 +82,6 @@ services:
           bench --site atd.mmis.space migrate;
           cd sites;
           ls;
-          if ! command -v jq > /dev/null; then
-          echo "jq is not installed. Please install it first.";
-          exit 1;
-          fi;
-
-          # Your new JSON data
-          new_data='{"allow_cors": "*", "ignore_csrf": 1}';
-
-          # Path to your common_site_config file
-          config_file="/path/to/common_site_config.json";
-
-          # Update the file with the new data using jq
-          jq -s '.[0] * .[1]' "$config_file" < <(echo "$new_data") > "$config_file.tmp" && mv "$config_file.tmp" "$config_file";
-
-          echo "Common site configuration updated successfully.";
           ';
 
   db:
