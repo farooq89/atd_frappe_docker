@@ -80,9 +80,8 @@ services:
         bash -c '
           bench --site atd.mmis.space install-app associated_terminals;
           bench --site atd.mmis.space migrate;
-          cd apps;
-          cd associated_terminals;
-          cd dashboard;
+          cd sites;
+          ls;
         ';
       
 
