@@ -97,7 +97,6 @@ services:
         jq -s '.[0] * .[1]' "$config_file" < <(echo "$new_data") > "$config_file.tmp" && mv "$config_file.tmp" "$config_file";
 
         echo "Common site configuration updated successfully.";
-      ;
       
 
   db:
