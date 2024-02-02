@@ -82,6 +82,8 @@ services:
           bench --site atd.mmis.space migrate;
           bench config set-common-config -c enable_frappe_logger true;
           bench config set-common-config -c allow_cors *;
+          cd sites;
+          cat common_site_config.json;
           ';
 
   db:
