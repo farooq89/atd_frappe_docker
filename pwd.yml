@@ -80,17 +80,8 @@ services:
         bash -c '
           bench --site atd.mmis.space install-app associated_terminals;
           bench --site atd.mmis.space migrate;
-          cd sites;
-          ls;
-          new_data='"'"'{"allow_cors": "*", "ignore_csrf": 1}'"'"'
-
-          # Path to your common_site_config file
-          config_file="common_site_config.json"
-
-          # Update the file with the new data using jq
-          jq '. + '"$new_data"'' "$config_file" > "$config_file.tmp" && mv "$config_file.tmp" "$config_file"
-          ls;
-          cat common_site_config.json;
+          bench config set-common-config -c enable_frappe_logger true;
+          bench config set-common-config -c allow_cors *;
           ';
 
   db:
