@@ -22,7 +22,7 @@ pipeline {
                     // Set the APPS_JSON environment variable
                     env.APPS_JSON = appsJson
 
-                    // Encode and set the APPS_JSON_BASE64 environment variable
+                    // test123
                     env.APPS_JSON_BASE64 = sh(script: "echo \${APPS_JSON} | base64 -w 0", returnStdout: true).trim()
                 }
             }
