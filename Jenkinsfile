@@ -78,13 +78,7 @@ pipeline {
                                 && sudo docker compose -f pwd.yml down \\
                                 && sleep 10 \\
                                 && sudo docker compose -f pwd.yml up \\
-                                && sleep 60 \\
-                                && containers_up=$(sudo docker-compose -f pwd.yml ps -q | wc -l) \\
-                                && while [[ "$containers_up" -ne "$(sudo docker-compose -f pwd.yml ps -q | wc -l)" ]]; do \\
-                                && sleep 5 \\
-                                && done \\
-                                && echo "All co -d ntainers are up" \\
-                                && exit
+                                && sleep 60 
                             "
                        '''
                     }
