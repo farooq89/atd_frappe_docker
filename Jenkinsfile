@@ -61,8 +61,6 @@ pipeline {
                 script {
                     sh '''
                         docker build -t usman89/myrepo:frapee_atd_0.0.2 .
-                        echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin
-                        docker.image("${DOCKER_HUB_REPO}:${IMAGE_NAME}").push()
                     '''
                 
                 }
