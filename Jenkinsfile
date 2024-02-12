@@ -63,7 +63,7 @@ pipeline {
                         docker build -t usman89/myrepo:frapee_atd_0.0.5 .
                     '''
                     sh '''
-                docker push usman89/myrepo:frapee_atd_0.0.5
+                        docker push usman89/myrepo:frapee_atd_0.0.5
                     '''
                 }
             }
