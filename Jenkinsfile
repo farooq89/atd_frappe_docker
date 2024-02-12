@@ -66,35 +66,35 @@ pipeline {
                 }
             }
         }
-        // stage('Deployment'){
-        //  steps{
-        //     sshagent(credentials:['114']){
-        //        script {
-        //                 sh 'set -x'
-        //                 sh '''
-        //                     ssh -o StrictHostKeyChecking=no ubuntu@192.168.10.114 "
-        //                         pwd \\
-        //                         && echo "devops@m1cromerg3r" | sudo -S sudo su \\
-        //                         && if [ -d ATD_frappe_docker ]
-        //                         then
-        //                             cd ATD_frappe_docker
-        //                             sudo git pull
-        //                         else
-        //                             git clone https://github.com/farooq89/ATD_frappe_docker.git
-        //                             cd ATD_frappe_docker
-        //                         fi \\
-        //                         && pwd \\
-        //                         && sudo docker pull usman89/myrepo:frapee_atd_0.0.2 \\
-        //                         && sudo docker compose -f pwd.yml down \\
-        //                         && sleep 10 \\
-        //                         && sudo docker compose -f pwd.yml up -d \\
-        //                         && sleep 60 
-        //                     "
-        //                '''
-        //             }
-        //         }
-        //     }
-        // }
+        stage('Deployment'){
+         steps{
+            sshagent(credentials:['114']){
+               script {
+                        sh 'set -x'
+                        sh '''
+                            ssh -o StrictHostKeyChecking=no ubuntu@192.168.10.114 "
+                                pwd \\
+                                && echo "devops@m1cromerg3r" | sudo -S sudo su \\
+                                && if [ -d ATD_frappe_docker ]
+                                then
+                                    cd ATD_frappe_docker
+                                    sudo git pull
+                                else
+                                    git clone https://github.com/farooq89/ATD_frappe_docker.git
+                                    cd ATD_frappe_docker
+                                fi \\
+                                && pwd \\
+                                && sudo docker pull usman89/myrepo:frapee_atd_0.0.2 \\
+                                && sudo docker compose -f pwd.yml down \\
+                                && sleep 10 \\
+                                && sudo docker compose -f pwd.yml up -d \\
+                                && sleep 60 
+                            "
+                       '''
+                    }
+                }
+            }
+        }
     }
     post {
     always {
