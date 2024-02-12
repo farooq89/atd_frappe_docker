@@ -3,30 +3,30 @@ pipeline {
 
     environment {
         DOCKER_HUB_REPO = 'usman89/myrepo'
-        IMAGE_NAME = 'frapee_atd_0.0.2'
+        IMAGE_NAME = 'frapee_atd_0.0.1'
         DOCKERHUB_CREDENTIALS= credentials('dockerhub')
     
     }
     stages {
-        stage('Setting app.json variable') {
-            steps {
-                script {
-                    // Define the APPS_JSON variable
-                    def appsJson = '''
-                        [{
-                            "url": "https://x-token-auth:ATCTT3xFfGN01ZGPAktgG5e_SQ02ryC4NimdhgBHl57h0aQ0xsEdNyfyOytjlnCok-ErgKPeyRh24Kw31KtDNKVYxTMeaKNQj0sZL2ze8FGCJgNkbqCzXq_-lMU248UkkdGbOWo-4pVSSIYUDI1WnmpR5UYvO_GqwWys-8QmJcBGxm1M-6lKBnY=39B560F8@bitbucket.org/persona-lworkspace/associated-terminals.git",
-                            "branch": "master"
-                        }]
-                    '''
+        // stage('Setting app.json variable') {
+        //     steps {
+        //         script {
+        //             // Define the APPS_JSON variable
+        //             def appsJson = '''
+        //                 [{
+        //                     "url": "https://x-token-auth:ATCTT3xFfGN01ZGPAktgG5e_SQ02ryC4NimdhgBHl57h0aQ0xsEdNyfyOytjlnCok-ErgKPeyRh24Kw31KtDNKVYxTMeaKNQj0sZL2ze8FGCJgNkbqCzXq_-lMU248UkkdGbOWo-4pVSSIYUDI1WnmpR5UYvO_GqwWys-8QmJcBGxm1M-6lKBnY=39B560F8@bitbucket.org/persona-lworkspace/associated-terminals.git",
+        //                     "branch": "master"
+        //                 }]
+        //             '''
                     
-                    // Set the APPS_JSON environment variable
-                    env.APPS_JSON = appsJson
+        //             // Set the APPS_JSON environment variable
+        //             env.APPS_JSON = appsJson
 
-                    // test123
-                    env.APPS_JSON_BASE64 = sh(script: "echo \${APPS_JSON} | base64 -w 0", returnStdout: true).trim()
-                }
-            }
-        }
+        //             // test123
+        //             env.APPS_JSON_BASE64 = sh(script: "echo \${APPS_JSON} | base64 -w 0", returnStdout: true).trim()
+        //         }
+        //     }
+        // }
         stage('Build Custom Image') {
             steps {
                 script {
@@ -37,7 +37,7 @@ pipeline {
                     --build-arg=PYTHON_VERSION=3.11.6 \
                     --build-arg=NODE_VERSION=18.18.2 \
                     --build-arg=APPS_JSON_BASE64=$APPS_JSON_BASE64 \
-                    --tag=usman89/myrepo:frapee_atd_0.0.2 \
+                    --tag=usman89/myrepo:frapee_atd_0.0.1 \
                     --file=images/custom/Containerfile .
                     '''
                 }
@@ -60,10 +60,10 @@ pipeline {
         //     steps {
         //         script {
         //             sh '''
-        //                 docker build -t usman89/myrepo:frapee_atd_0.0.2 .
+        //                 docker build -t usman89/myrepo:frapee_atd_0.0.1 .
         //             '''
         //             sh '''
-        //                 docker push usman89/myrepo:frapee_atd_0.0.2
+        //                 docker push usman89/myrepo:frapee_atd_0.0.1
         //             '''
         //         }
         //     }
@@ -86,7 +86,7 @@ pipeline {
                                     cd ATD_frappe_docker
                                 fi \\
                                 && pwd \\
-                                && sudo docker pull usman89/myrepo:frapee_atd_0.0.2 \\
+                                && sudo docker pull usman89/myrepo:frapee_atd_0.0.1 \\
                                 && sudo docker compose -f pwd.yml down \\
                                 && sleep 10 \\
                                 && sudo docker compose -f pwd.yml up \\
