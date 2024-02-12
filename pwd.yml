@@ -83,8 +83,6 @@ services:
           bench config set-common-config -c enable_frappe_logger true;
           bench set-config cors_allow_origin "*";
           bench set-config ignore_csrf 1;
-          cd sites;
-          cat common_site_config.json;
           ';
 
   db:
