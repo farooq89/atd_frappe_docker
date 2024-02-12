@@ -77,28 +77,29 @@ services:
         done;
         echo "sites/common_site_config.json found";
         bench new-site --no-mariadb-socket --admin-password=admin --db-root-password=admin --set-default atd.mmis.space;
-        bash -c '
-          bench get-app https://x-token-auth:ATCTT3xFfGN01ZGPAktgG5e_SQ02ryC4NimdhgBHl57h0aQ0xsEdNyfyOytjlnCok-ErgKPeyRh24Kw31KtDNKVYxTMeaKNQj0sZL2ze8FGCJgNkbqCzXq_-lMU248UkkdGbOWo-4pVSSIYUDI1WnmpR5UYvO_GqwWys-8QmJcBGxm1M-6lKBnY=39B560F8@bitbucket.org/persona-lworkspace/associated-terminals.git
-          bench --site atd.mmis.space install-app associated_terminals;
-          bench --site atd.mmis.space migrate;
-          bench config set-common-config -c enable_frappe_logger true;
-          bench set-config cors_allow_origin "*";
-          bench set-config ignore_csrf 1;
-          ';
         # bash -c '
-        #   if [ -d /apps/associated_terminals ]; then
-        #       cd /apps/associated_terminals
-        #       git pull
-        #   else
-        #       bench get-app https://x-token-auth:ATCTT3xFfGN01ZGPAktgG5e_SQ02ryC4NimdhgBHl57h0aQ0xsEdNyfyOytjlnCok-ErgKPeyRh24Kw31KtDNKVYxTMeaKNQj0sZL2ze8FGCJgNkbqCzXq_-lMU248UkkdGbOWo-4pVSSIYUDI1WnmpR5UYvO_GqwWys-8QmJcBGxm1M-6lKBnY=39B560F8@bitbucket.org/persona-lworkspace/associated-terminals.git
-        #       bench --site atd.mmis.space install-app associated_terminals;
-        #   fi
-
+        #   bench get-app https://x-token-auth:ATCTT3xFfGN01ZGPAktgG5e_SQ02ryC4NimdhgBHl57h0aQ0xsEdNyfyOytjlnCok-ErgKPeyRh24Kw31KtDNKVYxTMeaKNQj0sZL2ze8FGCJgNkbqCzXq_-lMU248UkkdGbOWo-4pVSSIYUDI1WnmpR5UYvO_GqwWys-8QmJcBGxm1M-6lKBnY=39B560F8@bitbucket.org/persona-lworkspace/associated-terminals.git
+        #   bench --site atd.mmis.space install-app associated_terminals;
         #   bench --site atd.mmis.space migrate;
         #   bench config set-common-config -c enable_frappe_logger true;
         #   bench set-config cors_allow_origin "*";
         #   bench set-config ignore_csrf 1;
-        # ';
+        #   ';
+        bash -c '
+          ls
+          if [ -d /apps/associated_terminals ]; then
+              cd /apps/associated_terminals
+              git pull
+          else
+              bench get-app https://x-token-auth:ATCTT3xFfGN01ZGPAktgG5e_SQ02ryC4NimdhgBHl57h0aQ0xsEdNyfyOytjlnCok-ErgKPeyRh24Kw31KtDNKVYxTMeaKNQj0sZL2ze8FGCJgNkbqCzXq_-lMU248UkkdGbOWo-4pVSSIYUDI1WnmpR5UYvO_GqwWys-8QmJcBGxm1M-6lKBnY=39B560F8@bitbucket.org/persona-lworkspace/associated-terminals.git
+              bench --site atd.mmis.space install-app associated_terminals;
+          fi
+
+          bench --site atd.mmis.space migrate;
+          bench config set-common-config -c enable_frappe_logger true;
+          bench set-config cors_allow_origin "*";
+          bench set-config ignore_csrf 1;
+        ';
 
   db:
     image: mariadb:10.6
