@@ -57,18 +57,18 @@ pipeline {
                 }
             }
         }
-        stage('code update') {
-            steps {
-                script {
-                    sh '''
-                        docker build -t usman89/myrepo:frapee_atd_0.0.2 .
-                    '''
-                    sh '''
-                docker push usman89/myrepo:frapee_atd_0.0.2
-                    '''
-                }
-            }
-        }
+        // stage('code update') {
+        //     steps {
+        //         script {
+        //             sh '''
+        //                 docker build -t usman89/myrepo:frapee_atd_0.0.2 .
+        //             '''
+        //             sh '''
+        //         docker push usman89/myrepo:frapee_atd_0.0.2
+        //             '''
+        //         }
+        //     }
+        // }
         stage('Deployment'){
          steps{
             sshagent(credentials:['114']){
