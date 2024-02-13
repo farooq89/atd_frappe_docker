@@ -89,7 +89,7 @@ services:
           echo "Local commit hash: $LOCAL_HASH"
           echo "Remote commit hash: $REMOTE_HASH"
 
-          if [ git rev-parse HEAD == git ls-remote upstream HEAD ]; then
+          if [ "git rev-parse HEAD" == "git ls-remote upstream HEAD" ]; then
             echo "Local and remote Git repositories are in sync."
           else
             echo "Local and remote Git repositories are not in sync."
