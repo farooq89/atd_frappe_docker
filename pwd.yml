@@ -86,7 +86,8 @@ services:
             echo "Code is updated";
             ls;  # Assuming you have yarn installed and need to run a build after pulling new code
           else
-              echo "Code is not updated";
+            echo "Code is not updated";
+            pwd;  
           fi
           bench --site atd.mmis.space install-app associated_terminals;
           bench --site atd.mmis.space migrate;
