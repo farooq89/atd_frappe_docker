@@ -82,7 +82,7 @@ services:
           cd apps
           cd associated_terminals
           pull_output=$(git pull)
-          eche "1" 
+          echo "1" 
           echo "$pull_output"
           echo "2"
           if [[ "$pull_output" == "Already up to date." ]]; then
