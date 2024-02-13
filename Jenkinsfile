@@ -56,21 +56,21 @@ pipeline {
                 }
             }
         }
-        stage('code update') {
-            steps {
-                script {
-                    sh '''
-                        docker build -t usman89/myrepo:frapee_atd_0.1.1 .
-                    '''
-                    sh '''
-                        docker commit usman89/myrepo:frapee_atd_0.1.1
-                    '''
-                    sh '''
-                        docker push usman89/myrepo:frapee_atd_0.1.1
-                    '''
-                }
-            }
-        }
+        // stage('code update') {
+        //     steps {
+        //         script {
+        //             sh '''
+        //                 docker build -t usman89/myrepo:frapee_atd_0.0.3 .
+        //             '''
+        //             sh '''
+        //                 docker commit usman89/myrepo:frapee_atd_0.0.3
+        //             '''
+        //             sh '''
+        //                 docker push usman89/myrepo:frapee_atd_0.0.3
+        //             '''
+        //         }
+        //     }
+        // }
         stage('Deployment'){
          steps{
             sshagent(credentials:['114']){
@@ -89,7 +89,7 @@ pipeline {
                                     cd ATD_frappe_docker
                                 fi \\
                                 && pwd \\
-                                && sudo docker pull usman89/myrepo:frapee_atd_0.1.1\\
+                                && sudo docker pull usman89/myrepo:frapee_atd_0.0.3\\
                                 && sudo docker compose -f pwd.yml down \\
                                 && sudo docker compose -f pwd.yml up 
                             "
