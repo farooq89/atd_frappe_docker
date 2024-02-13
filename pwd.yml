@@ -85,12 +85,12 @@ services:
           echo "1" 
           echo "$pull_output"
           echo "2"
-         if ! git --git-dir=".git" diff --quiet
-        then
-            echo "3"
-        else
-            echo "4"
-        fi
+          if ! git --git-dir=".git" diff --quiet
+            then
+              echo "3"
+            else
+              echo "4"
+            fi
           bench --site atd.mmis.space install-app associated_terminals;
           bench --site atd.mmis.space migrate;
           bench config set-common-config -c enable_frappe_logger true;
