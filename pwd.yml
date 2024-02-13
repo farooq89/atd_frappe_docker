@@ -88,7 +88,7 @@ services:
           echo "Remote commit hash: $REMOTE_HASH"
           echo "1"
           
-          if [ "$LOCAL_HASH" == "$REMOTE_HASH" ]; then
+          if [( "$LOCAL_HASH" == "$REMOTE_HASH" )]; then
               echo "Local and remote Git repositories are in sync."
           else
               echo "Local and remote Git repositories are not in sync."
