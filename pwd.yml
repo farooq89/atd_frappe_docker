@@ -87,7 +87,7 @@ services:
           REMOTE_HASH=$(git ls-remote upstream HEAD | awk "{print $1}")
           echo "Local commit hash: $LOCAL_HASH"
           echo "Remote commit hash: $REMOTE_HASH"
-          if [ "$LOCAL_HASH" == "$REMOTE_HASH" ] then
+          if [ "$LOCAL_HASH" == "$REMOTE_HASH" ]; then
             echo "Local and remote Git repositories are in sync."
           else
             echo "Local and remote Git repositories are not in sync."
