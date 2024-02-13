@@ -81,12 +81,18 @@ services:
         bash -c '
           cd apps
           cd associated_terminals
-          if ! git --git-dir=".git" diff --quiet
-            then
-              echo "3"
-            else
-              echo "4"
-            fi
+         
+          LOCAL_HASH=$(git rev-parse HEAD)
+          REMOTE_HASH=$(git ls-remote upstream HEAD | awk '{print $1}')
+
+          if [ "$LOCAL_HASH" == "$REMOTE_HASH" ]; then
+              echo "Local and remote Git repositories are in sync."
+          else
+              echo "Local and remote Git repositories are not in sync."
+              echo "Local commit hash: $LOCAL_HASH"
+              echo "Remote commit hash: $REMOTE_HASH"
+          fi
+
           bench --site atd.mmis.space install-app associated_terminals;
           bench --site atd.mmis.space migrate;
           bench config set-common-config -c enable_frappe_logger true;
