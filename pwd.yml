@@ -77,23 +77,23 @@ services:
         done;
         echo "sites/common_site_config.json found";
         bench new-site --no-mariadb-socket --admin-password=admin --db-root-password=admin --set-default atd.mmis.space;
-        cd apps;
-        cd associated_terminals;
-        git pull;
-        # if [ $? -eq 0 ]; then
-        #     echo "Code is updated";
-        #     ls;  # Assuming you have yarn installed and need to run a build after pulling new code
-        # else
-        #     echo "Code is not updated";
-        # fi
-        # pwd;
-        # bash -c '
-        #   bench --site atd.mmis.space install-app associated_terminals;
-        #   bench --site atd.mmis.space migrate;
-        #   bench config set-common-config -c enable_frappe_logger true;
-        #   bench set-config cors_allow_origin "*";
-        #   bench set-config ignore_csrf 1;
-        #   ';
+        pwd;
+        bash -c '
+          cd apps
+          cd associated_terminals
+          git pull
+          if [ $? -eq 0 ]; then
+            echo "Code is updated";
+            ls;  # Assuming you have yarn installed and need to run a build after pulling new code
+          else
+              echo "Code is not updated";
+          fi
+          bench --site atd.mmis.space install-app associated_terminals;
+          bench --site atd.mmis.space migrate;
+          bench config set-common-config -c enable_frappe_logger true;
+          bench set-config cors_allow_origin "*";
+          bench set-config ignore_csrf 1;
+          ';
 
   db:
     image: mariadb:10.6
