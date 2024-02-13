@@ -37,7 +37,7 @@ pipeline {
                     --build-arg=PYTHON_VERSION=3.11.6 \
                     --build-arg=NODE_VERSION=18.18.2 \
                     --build-arg=APPS_JSON_BASE64=$APPS_JSON_BASE64 \
-                    --tag=usman89/myrepo:frapee_atd_0.1.1\
+                    --tag=usman89/myrepo:frapee_atd_0.0.1\
                     --file=images/custom/Containerfile .
                     '''
                 }
