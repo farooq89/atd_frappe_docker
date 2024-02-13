@@ -82,10 +82,13 @@ services:
           cd apps
           cd associated_terminals
           pull_output=$(git pull)
+          eche "1" 
+          echo "$pull_output"
+          echo "2"
           if [[ "$pull_output" == "Already up to date." ]]; then
-              echo "1"
+              echo "3"
           else
-              echo "2"
+              echo "4"
           fi
           bench --site atd.mmis.space install-app associated_terminals;
           bench --site atd.mmis.space migrate;
