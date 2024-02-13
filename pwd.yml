@@ -84,11 +84,11 @@ services:
           cd associated_terminals
           pwd
           git -v
-          echo "Remote commit hash: $REMOTE_HASH"
-          echo "Local commit hash: $commit_hash"
-          commit_hash=$(git rev-parse HEAD)
+          git rev-parse HEAD
+          git ls-remote upstream HEAD | awk "{print $1}"
+          LOCAL_HASH=$(git rev-parse HEAD)
           REMOTE_HASH=$(git ls-remote upstream HEAD | awk "{print $1}")
-          if [ git rev-parse HEAD == git ls-remote upstream HEAD | awk "{print $1}" ]; then
+          if [ "$LOCAL_HASH" == "$REMOTE_HASH" ]; then
             echo "Local and remote Git repositories are in sync."
           else
             echo "Local and remote Git repositories are not in sync."
