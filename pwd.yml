@@ -85,7 +85,7 @@ services:
           echo "1" 
           echo "$pull_output"
           echo "2"
-          if [[ "$pull_output" == "Already up to date." ]]; then
+          if [[ "$pull_output" == "Updating" ]]; then
               echo "3"
           else
               echo "4"
