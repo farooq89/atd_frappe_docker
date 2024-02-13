@@ -82,12 +82,12 @@ services:
           cd apps
           cd associated_terminals
           git pull
-          if [ $? -eq 1 ]; then
-            echo "updated";
+          if [ $? -eq 0 ]; then
+            echo "code is updated";
             ls;  # Assuming you have yarn installed and need to run a build after pulling new code
           else
             echo "not updated";
-            ls;  
+            yarn build;  
           fi
           bench --site atd.mmis.space install-app associated_terminals;
           bench --site atd.mmis.space migrate;
