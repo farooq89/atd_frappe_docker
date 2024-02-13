@@ -81,7 +81,8 @@ services:
         bash -c '
           cd apps
           cd associated_terminals
-         
+          git rev-parse HEAD
+          git ls-remote upstream HEAD
           LOCAL_HASH=$(git rev-parse HEAD)
           REMOTE_HASH=$(git ls-remote upstream HEAD | awk '{print $1}')
           echo "Local commit hash: $LOCAL_HASH"
