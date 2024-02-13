@@ -82,18 +82,15 @@ services:
           cd apps
           cd associated_terminals
           pull_output=$(git pull)
-
-          # Check if there were any updates
           if [[ "$pull_output" == "Already up to date." ]]; then
               echo "Code is already up to date"
           else
-              # Check if there were modified files
               if [[ "$pull_output" == *"Updating"* ]]; then
                   echo "Code is updated"
-                  # Run yarn build
                   yarn build
               else
                   echo "Unknown update status"
+                  yarn build
               fi
           fi
           bench --site atd.mmis.space install-app associated_terminals;
