@@ -85,8 +85,8 @@ services:
           pwd
           git -v
           echo "Remote commit hash: $REMOTE_HASH"
-          echo "Local commit hash: $LOCAL_HASH"
-          LOCAL_HASH=$(git rev-parse HEAD)
+          echo "Local commit hash: $commit_hash"
+          commit_hash=$(git rev-parse HEAD)
           REMOTE_HASH=$(git ls-remote upstream HEAD | awk "{print $1}")
           if [ "$LOCAL_HASH" == "$REMOTE_HASH" ]; then
             echo "Local and remote Git repositories are in sync."
