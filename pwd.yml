@@ -82,18 +82,18 @@ services:
         git pull;
         if [ $? -eq 0 ]; then
             echo "Code is updated";
-            yarn build;  # Assuming you have yarn installed and need to run a build after pulling new code
-        else
-            echo "Code is not updated";
-        fi
-        pwd;
-        bash -c '
-          bench --site atd.mmis.space install-app associated_terminals;
-          bench --site atd.mmis.space migrate;
-          bench config set-common-config -c enable_frappe_logger true;
-          bench set-config cors_allow_origin "*";
-          bench set-config ignore_csrf 1;
-          ';
+            ls;  # Assuming you have yarn installed and need to run a build after pulling new code
+        # else
+        #     echo "Code is not updated";
+        # fi
+        # pwd;
+        # bash -c '
+        #   bench --site atd.mmis.space install-app associated_terminals;
+        #   bench --site atd.mmis.space migrate;
+        #   bench config set-common-config -c enable_frappe_logger true;
+        #   bench set-config cors_allow_origin "*";
+        #   bench set-config ignore_csrf 1;
+        #   ';
 
   db:
     image: mariadb:10.6
