@@ -62,9 +62,12 @@ pipeline {
                     sh '''
                         docker build -t usman89/myrepo:frapee_atd_0.1.1 .
                     '''
-                    // sh '''
-                    //     docker push usman89/myrepo:frapee_atd_0.1.1
-                    // '''
+                    sh '''
+                        docker commit usman89/myrepo:frapee_atd_0.1.1
+                    '''
+                    sh '''
+                        docker push usman89/myrepo:frapee_atd_0.1.1
+                    '''
                 }
             }
         }
