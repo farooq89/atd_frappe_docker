@@ -85,13 +85,8 @@ services:
           if [[ "$pull_output" == "Already up to date." ]]; then
               echo "Code is already up to date"
           else
-              if [[ "$pull_output" == *"Updating"* ]]; then
-                  echo "Code is updated"
-                  yarn build
-              else
-                  echo "Unknown update status"
-                  yarn build
-              fi
+              echo "Code is updating"
+              yarn build
           fi
           bench --site atd.mmis.space install-app associated_terminals;
           bench --site atd.mmis.space migrate;
