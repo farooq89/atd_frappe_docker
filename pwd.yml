@@ -83,10 +83,9 @@ services:
           cd associated_terminals
           pull_output=$(git pull)
           if [[ "$pull_output" == "Already up to date." ]]; then
-              echo "Code is already up to date"
+              echo "1"
           else
-              echo "Code is updating"
-              yarn build
+              echo "2"
           fi
           bench --site atd.mmis.space install-app associated_terminals;
           bench --site atd.mmis.space migrate;
