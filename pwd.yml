@@ -81,6 +81,8 @@ services:
         pwd;
         cd apps;
         ls;
+        cd associated_terminals;
+        git pull;
         bash -c '
           bench --site atd.mmis.space install-app associated_terminals;
           bench --site atd.mmis.space migrate;
