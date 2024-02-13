@@ -84,7 +84,7 @@ services:
           cd associated_terminals
           pwd
           git -v
-          echo "Local and remote Git repositories are not in sync."
+          echo "Remote commit hash: $REMOTE_HASH"
           echo "Local commit hash: $LOCAL_HASH"
           LOCAL_HASH=$(git rev-parse HEAD)
           REMOTE_HASH=$(git ls-remote upstream HEAD | awk "{print $1}")
