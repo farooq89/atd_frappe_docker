@@ -91,7 +91,8 @@ pipeline {
                                 && pwd \\
                                 && sudo docker pull usman89/myrepo:frapee_atd_0.0.3\\
                                 && sudo docker compose -f pwd.yml down \\
-                                && sudo docker compose -f pwd.yml up 
+                                && sudo docker compose -f pwd.yml up -d
+                                && sleep 100 
                             "
                        '''
                     }
