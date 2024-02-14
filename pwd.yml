@@ -79,7 +79,6 @@ services:
         bench new-site --no-mariadb-socket --admin-password=admin --db-root-password=admin --set-default atd.mmis.space;
         pwd;
         bash -c '
-          echo "1"
           cd apps
           cd associated_terminals
           pwd
@@ -87,6 +86,7 @@ services:
             echo "Local and remote Git repositories are in sync."
           else
             echo "Local and remote Git repositories are not in sync."
+            git stash
             git pull
             yarn build
           fi
