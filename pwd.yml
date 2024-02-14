@@ -100,7 +100,7 @@ services:
   db:
     image: mariadb:10.6
     healthcheck:
-      # test: mysqladmin ping -h localhost --password=admin
+      # test: mysqladmin ping -h localhost --password=admin123
       # test: mysqladmin ping -uroot -p123
       ## test123
       test: mysql -uroot -padmin
