@@ -39,7 +39,7 @@ pipeline {
                     --build-arg=APPS_JSON_BASE64=$APPS_JSON_BASE64 \
                     --tag=usman89/myrepo:frapee_atd_0.0.1 \
                     --file=images/custom/Containerfile \
-                    -- no-cache .
+                    --no-cache .
                     '''
                 }
             }
