@@ -35,7 +35,7 @@ pipeline {
                     --build-arg=FRAPPE_PATH=https://github.com/frappe/frappe \
                     --build-arg=FRAPPE_BRANCH=version-14 \
                     --build-arg=PYTHON_VERSION=3.11.6 \
-                    --build-arg=NODE_VERSION=16.15.0 \
+                    --build-arg=NODE_VERSION=18.10.0 \
                     --build-arg=APPS_JSON_BASE64=$APPS_JSON_BASE64 \
                     --tag=usman89/myrepo:frapee_atd_0.0.5 \
                     --file=images/custom/Containerfile \
