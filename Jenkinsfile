@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_HUB_REPO = 'usman89/myrepo'
-        IMAGE_NAME = 'frapee_atd_0.0.1'
+        IMAGE_NAME = 'frapee_atd_0.0.5'
         DOCKERHUB_CREDENTIALS= credentials('dockerhub')
     
     }
