@@ -89,8 +89,13 @@ pipeline {
                                     cd ATD_frappe_docker
                                 fi \\
                                 && pwd \\
-                                && sudo docker pull usman89/myrepo:frapee_atd_0.0.1\\
+                                && sudo docker pull usman89/myrepo:frapee_atd_0.0.1 \\
                                 && sudo docker compose -f pwd.yml down \\
+                                && docker stop $(docker ps -q) \\
+                                && docker rm $(docker ps -aq) \\
+                                && docker volume rm $(docker volume ls -q) \\
+                                && docker restart $(docker ps -q) \\
+                                && docker rmi -f $(docker images -a -q) \\
                                 && sudo docker compose -f pwd.yml up -d \\
                                 && sleep 100 
                             "
