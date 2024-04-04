@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_HUB_REPO = 'usman89/myrepo'
-        IMAGE_NAME = 'frapee_atd_0.0.2'
+        IMAGE_NAME = 'frapee_atd_0.0.1'
         DOCKERHUB_CREDENTIALS= credentials('dockerhub')
     
     }
@@ -37,7 +37,7 @@ pipeline {
                     --build-arg=PYTHON_VERSION=3.11.6 \
                     --build-arg=NODE_VERSION=18.10.0 \
                     --build-arg=APPS_JSON_BASE64=$APPS_JSON_BASE64 \
-                    --tag=usman89/myrepo:frapee_atd_0.0.2 \
+                    --tag=usman89/myrepo:frapee_atd_0.0.1 \
                     --file=images/custom/Containerfile \
                     --no-cache .
                     '''
@@ -61,13 +61,13 @@ pipeline {
         //     steps {
         //         script {
         //             sh '''
-        //                 docker build -t usman89/myrepo:frapee_atd_0.0.2 .
+        //                 docker build -t usman89/myrepo:frapee_atd_0.0.1 .
         //             '''
         //             sh '''
-        //                 docker commit usman89/myrepo:frapee_atd_0.0.2
+        //                 docker commit usman89/myrepo:frapee_atd_0.0.1
         //             '''
         //             sh '''
-        //                 docker push usman89/myrepo:frapee_atd_0.0.2
+        //                 docker push usman89/myrepo:frapee_atd_0.0.1
         //             '''
         //         }
         //     }
@@ -90,7 +90,7 @@ pipeline {
                                     cd ATD_frappe_docker
                                 fi \\
                                 && pwd \\
-                                && sudo docker pull usman89/myrepo:frapee_atd_0.0.2\\
+                                && sudo docker pull usman89/myrepo:frapee_atd_0.0.1\\
                                 && sudo docker compose -f pwd.yml down \\
                                 && sudo docker compose -f pwd.yml up -d \\
                                 && sleep 100 
