@@ -34,9 +34,8 @@ services:
     environment:
       DB_HOST: db
       DB_PORT: "3306"
-      REDIS_CACHE: redis-cache:13000
-      REDIS_QUEUE: redis-queue:11000
-      REDIS_SOCKETIO: "redis-socketio:13000"
+      REDIS_CACHE: redis-cache:6379
+      REDIS_QUEUE: redis-queue:6379
       SOCKETIO_PORT: "9000"
     volumes:
       - sites:/home/frappe/frappe-bench/sites
@@ -56,17 +55,16 @@ services:
     environment:
       DB_HOST: db
       DB_PORT: "3306"
-      REDIS_CACHE: redis-cache:13000
-      REDIS_QUEUE: redis-queue:11000
-      REDIS_SOCKETIO: "redis_socketio:13000"
-      SOCKETIO_PORT: "9000"
+      REDIS_CACHE: redis-cache:6379
+      REDIS_QUEUE: redis-queue:6379
       MYSQL_ROOT_PASSWORD: admin
+      SOCKETIO_PORT: "9000"
     command:
       - >
         sleep 100;
         wait-for-it -t 120 db:3306;
-        wait-for-it -t 120 redis-cache:13000;
-        wait-for-it -t 120 redis-queue:11000;
+        wait-for-it -t 120 redis-cache:6379;
+        wait-for-it -t 120 redis-queue:6379;
         export start=`date +%s`;
         until [[ -n `grep -hs ^ sites/common_site_config.json | jq -r ".db_host // empty"` ]] && \
           [[ -n `grep -hs ^ sites/common_site_config.json | jq -r ".redis_cache // empty"` ]] && \
