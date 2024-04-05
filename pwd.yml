@@ -182,6 +182,9 @@ services:
         condition: on-failure
     volumes:
       - redis-queue-data:/data
+    depends_on:
+      - create-site
+
 
   redis-cache:
     image: redis:6.2-alpine
@@ -190,6 +193,9 @@ services:
         condition: on-failure
     volumes:
       - redis-cache-data:/data
+    depends_on:
+      - create-site
+
 
   scheduler:
     # image: frappe/erpnext:v14
