@@ -129,6 +129,9 @@ services:
         condition: on-failure
     command:
       - nginx-entrypoint.sh
+    depends_on:
+      - backend
+      - websocket
 
     environment:
       BACKEND: backend:8000
@@ -182,8 +185,6 @@ services:
         condition: on-failure
     volumes:
       - redis-queue-data:/data
-    depends_on:
-      - create-site
 
 
   redis-cache:
@@ -193,9 +194,6 @@ services:
         condition: on-failure
     volumes:
       - redis-cache-data:/data
-    depends_on:
-      - create-site
-
 
   scheduler:
     # image: frappe/erpnext:v14
