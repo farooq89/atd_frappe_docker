@@ -1,10 +1,9 @@
+
 version: "3"
 
 services:
   backend:
-    # test123123
-    # image: frappe/erpnext:v14
-    image: usman89/myrepo:frapee_atd_0.0.2
+    image: frappe/erpnext:v15.19.2
     deploy:
       restart_policy:
         condition: on-failure
@@ -13,15 +12,14 @@ services:
       - logs:/home/frappe/frappe-bench/logs
 
   configurator:
-    # image: frappe/erpnext:v14
-    image: usman89/myrepo:frapee_atd_0.0.2
+    image: frappe/erpnext:v15.19.2
     deploy:
       restart_policy:
         condition: none
     entrypoint:
       - bash
       - -c
-    # add redis_socketio for backward compatibilityasd
+    # add redis_socketio for backward compatibility
     command:
       - >
         ls -1 apps > sites/apps.txt;
@@ -42,7 +40,7 @@ services:
       - logs:/home/frappe/frappe-bench/logs
 
   create-site:
-    image: usman89/myrepo:frapee_atd_0.0.2
+    image: frappe/erpnext:v15.19.2
     deploy:
       restart_policy:
         condition: none
@@ -52,13 +50,6 @@ services:
     entrypoint:
       - bash
       - -c
-    environment:
-      DB_HOST: db
-      DB_PORT: "3306"
-      REDIS_CACHE: redis-cache:6379
-      REDIS_QUEUE: redis-queue:6379
-      MYSQL_ROOT_PASSWORD: admin
-      SOCKETIO_PORT: "9000"
     command:
       - >
         wait-for-it -t 120 db:3306;
@@ -70,41 +61,19 @@ services:
           [[ -n `grep -hs ^ sites/common_site_config.json | jq -r ".redis_queue // empty"` ]];
         do
           echo "Waiting for sites/common_site_config.json to be created";
-          sleep 5
+          sleep 5;
           if (( `date +%s`-start > 120 )); then
             echo "could not find sites/common_site_config.json with required keys";
             exit 1
           fi
         done;
         echo "sites/common_site_config.json found";
-        bench new-site --no-mariadb-socket --admin-password=admin --db-root-password=admin --set-default atd.mmis.space;
-        pwd;
-        bash -c '
-          cd apps
-          cd associated_terminals
-          pwd
-          if [ "git rev-parse HEAD" == "git ls-remote upstream HEAD" ]; then
-            echo "Local and remote Git repositories are in sync."
-          else
-            echo "Local and remote Git repositories are not in sync."
-            git stash
-            git pull
-            yarn build
-          fi
-          bench --site atd.mmis.space install-app associated_terminals;
-          bench --site atd.mmis.space migrate;
-          bench config set-common-config -c enable_frappe_logger true;
-          bench set-config cors_allow_origin "*";
-          bench set-config ignore_csrf 1;
-          ';
+        bench new-site --no-mariadb-socket --admin-password=admin --db-root-password=admin --install-app erpnext --set-default frontend;
 
   db:
     image: mariadb:10.6
     healthcheck:
-      # test: mysqladmin ping -h localhost --password=admin123
-      # test: mysqladmin ping -uroot -p123
-      ## test123
-      test: mysql -uroot -padmin
+      test: mysqladmin ping -h localhost --password=admin
       interval: 1s
       retries: 15
     deploy:
@@ -120,18 +89,18 @@ services:
     volumes:
       - db-data:/var/lib/mysql
 
-  frontend1:
-    image: usman89/myrepo:frapee_atd_0.0.2
-    # image: frappe/erpnext:v14
+  frontend:
+    image: frappe/erpnext:v15.19.2
+    depends_on:
+      - websocket
     deploy:
       restart_policy:
         condition: on-failure
     command:
       - nginx-entrypoint.sh
-
     environment:
       BACKEND: backend:8000
-      FRAPPE_SITE_NAME_HEADER: atd.mmis.space
+      FRAPPE_SITE_NAME_HEADER: frontend
       SOCKETIO: websocket:9000
       UPSTREAM_REAL_IP_ADDRESS: 127.0.0.1
       UPSTREAM_REAL_IP_HEADER: X-Forwarded-For
@@ -145,8 +114,7 @@ services:
       - "8080:8080"
 
   queue-long:
-    #image: frappe/erpnext:v14
-    image: usman89/myrepo:frapee_atd_0.0.2
+    image: frappe/erpnext:v15.19.2
     deploy:
       restart_policy:
         condition: on-failure
@@ -160,8 +128,7 @@ services:
       - logs:/home/frappe/frappe-bench/logs
 
   queue-short:
-    #image: frappe/erpnext:v14
-    image: usman89/myrepo:frapee_atd_0.0.2
+    image: frappe/erpnext:v15.19.2
     deploy:
       restart_policy:
         condition: on-failure
@@ -191,8 +158,7 @@ services:
       - redis-cache-data:/data
 
   scheduler:
-    # image: frappe/erpnext:v14
-    image: usman89/myrepo:frapee_atd_0.0.2
+    image: frappe/erpnext:v15.19.2
     deploy:
       restart_policy:
         condition: on-failure
@@ -204,8 +170,7 @@ services:
       - logs:/home/frappe/frappe-bench/logs
 
   websocket:
-    image: usman89/myrepo:frapee_atd_0.0.2
-    #image: frappe/erpnext:v14
+    image: frappe/erpnext:v15.19.2
     deploy:
       restart_policy:
         condition: on-failure

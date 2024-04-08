@@ -13,7 +13,6 @@ services:
       - logs:/home/frappe/frappe-bench/logs
 
   configurator:
-    # image: frappe/erpnext:v14
     image: usman89/myrepo:frapee_atd_0.0.1
     deploy:
       restart_policy:
@@ -51,13 +50,6 @@ services:
     entrypoint:
       - bash
       - -c
-    environment:
-      DB_HOST: db
-      DB_PORT: "3306"
-      REDIS_CACHE: redis-cache:6379
-      REDIS_QUEUE: redis-queue:6379
-      MYSQL_ROOT_PASSWORD: admin
-      SOCKETIO_PORT: 9000
     command:
       - >
         sleep 100;
