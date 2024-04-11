@@ -224,8 +224,8 @@ services:
       - logs:/home/frappe/frappe-bench/logs
 
   websocket:
-    image: usman89/myrepo:frapee_atd_0.0.2
-    #image: frappe/erpnext:v14
+    #image: usman89/myrepo:frapee_atd_0.0.2
+    image: frappe/erpnext:v14
     deploy:
       restart_policy:
         condition: on-failure
