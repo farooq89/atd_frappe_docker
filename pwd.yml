@@ -150,8 +150,8 @@ services:
       - "8080:8080"
 
   queue-long:
-    #image: frappe/erpnext:v14
-    image: usman89/myrepo:frapee_atd_0.0.2
+    image: frappe/erpnext:v14
+    # image: usman89/myrepo:frapee_atd_0.0.2
     deploy:
       restart_policy:
         condition: on-failure
@@ -163,17 +163,10 @@ services:
     volumes:
       - sites:/home/frappe/frappe-bench/sites
       - logs:/home/frappe/frappe-bench/logs
-    environment:
-      DB_HOST: db
-      DB_PORT: "3306"
-      REDIS_CACHE: redis-cache:6379
-      REDIS_QUEUE: redis-queue:6379
-      SOCKETIO_PORT: 9000
-
 
   queue-short:
-    #image: frappe/erpnext:v14
-    image: usman89/myrepo:frapee_atd_0.0.2
+    image: frappe/erpnext:v14
+    # image: usman89/myrepo:frapee_atd_0.0.2
     deploy:
       restart_policy:
         condition: on-failure
@@ -185,13 +178,6 @@ services:
     volumes:
       - sites:/home/frappe/frappe-bench/sites
       - logs:/home/frappe/frappe-bench/logs
-    environment:
-      DB_HOST: db
-      DB_PORT: "3306"
-      REDIS_CACHE: redis-cache:6379
-      REDIS_QUEUE: redis-queue:6379
-      SOCKETIO_PORT: 9000
-
 
   redis-queue:
     image: redis:6.2-alpine
