@@ -81,6 +81,7 @@ services:
             echo "Local and remote Git repositories are not in sync."
             git stash
             git pull
+            yarn install
             yarn build
           fi
           bench --site atd.mmis.space install-app associated_terminals;
