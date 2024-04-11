@@ -78,6 +78,8 @@ services:
           if [ "git rev-parse HEAD" == "git ls-remote upstream HEAD" ]; then
             echo "Local and remote Git repositories are in sync."
           else
+            echo "123"
+            export NODE_OPTIONS=--max_old_space_size=4096
             echo "Local and remote Git repositories are not in sync."
             git stash
             git pull
