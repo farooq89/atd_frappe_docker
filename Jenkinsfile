@@ -67,7 +67,7 @@ pipeline {
         //             '''
         //             sh '''
         //                 docker push usman89/myrepo:version15
-        //             '''as
+        //             '''
         //         }
         //     }
         // }
