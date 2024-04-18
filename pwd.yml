@@ -28,13 +28,14 @@ services:
         bench set-config -gp db_port $$DB_PORT;
         bench set-config -g redis_cache "redis://$$REDIS_CACHE";
         bench set-config -g redis_queue "redis://$$REDIS_QUEUE";
-        bench set-config -g redis_socketio redis://redis-queue:6379
+        bench set-config -g redis_socketio "redis://$$REDIS_QUEUE";
+        bench set-config -gp socketio_port $$SOCKETIO_PORT;
     environment:
       DB_HOST: db
       DB_PORT: "3306"
       REDIS_CACHE: redis-cache:6379
       REDIS_QUEUE: redis-queue:6379
-      SOCKETIO_PORT: 9000
+      SOCKETIO_PORT: "9000"
     volumes:
       - sites:/home/frappe/frappe-bench/sites
       - logs:/home/frappe/frappe-bench/logs
@@ -52,7 +53,6 @@ services:
       - -c
     command:
       - >
-        sleep 100;
         wait-for-it -t 120 db:3306;
         wait-for-it -t 120 redis-cache:6379;
         wait-for-it -t 120 redis-queue:6379;
@@ -62,7 +62,7 @@ services:
           [[ -n `grep -hs ^ sites/common_site_config.json | jq -r ".redis_queue // empty"` ]];
         do
           echo "Waiting for sites/common_site_config.json to be created";
-          sleep 5
+          sleep 5;
           if (( `date +%s`-start > 120 )); then
             echo "could not find sites/common_site_config.json with required keys";
             exit 1
@@ -103,10 +103,8 @@ services:
   db:
     image: mariadb:10.6
     healthcheck:
-      # test: mysqladmin ping -h localhost --password=admin123
-      # test: mysqladmin ping -uroot -p123
-      ## test123
-      test: mysql -uroot -padmin
+      test: mysqladmin ping -h localhost --password=admin
+      # test: mysql -uroot -padmin
       interval: 1s
       retries: 15
     deploy:
@@ -124,15 +122,14 @@ services:
 
   frontend1:
     image: usman89/myrepo:frapee_atd_0.0.2
+    depends_on:
+      - websocket
     # image: frappe/erpnext:v14
     deploy:
       restart_policy:
         condition: on-failure
     command:
       - nginx-entrypoint.sh
-    depends_on:
-      - backend
-      - websocket
 
     environment:
       BACKEND: backend:8000
@@ -221,10 +218,6 @@ services:
     volumes:
       - sites:/home/frappe/frappe-bench/sites
       - logs:/home/frappe/frappe-bench/logs
-    depends_on:
-      - configurator
-      - redis-cache
-      - redis-queue
 
 volumes:
   db-data:
