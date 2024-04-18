@@ -26,13 +26,15 @@ services:
         ls -1 apps > sites/apps.txt;
         bench set-config -g db_host $$DB_HOST;
         bench set-config -gp db_port $$DB_PORT;
-        bench set-config -g redis_cache "redis://127.0.0.1:13000";
-        bench set-config -g redis_queue "redis://127.0.0.1:11000";
-        bench set-config -g redis_socketio "redis://127.0.0.1:13000";
+        bench set-config -g redis_cache "redis://$$REDIS_CACHE";
+        bench set-config -g redis_queue "redis://$$REDIS_QUEUE";
+        bench set-config -g redis_socketio "redis://$$REDIS_QUEUE";
         bench set-config -gp socketio_port $$SOCKETIO_PORT;
     environment:
       DB_HOST: db
       DB_PORT: "3306"
+      REDIS_CACHE: redis-cache:6379
+      REDIS_QUEUE: redis-queue:6379
       SOCKETIO_PORT: "9000"
     volumes:
       - sites:/home/frappe/frappe-bench/sites
@@ -67,7 +69,6 @@ services:
           fi
         done;
         echo "sites/common_site_config.json found";
-        cat common_site_config.json;
         bench new-site --no-mariadb-socket --admin-password=admin --db-root-password=admin --set-default atd.mmis.space;
         pwd;
         bash -c '
