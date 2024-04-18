@@ -34,7 +34,7 @@ services:
       DB_PORT: "3306"
       REDIS_CACHE: redis-cache:6379
       REDIS_QUEUE: redis-queue:6379
-      SOCKETIO_PORT: 9000
+      SOCKETIO_PORT: 6379
     volumes:
       - sites:/home/frappe/frappe-bench/sites
       - logs:/home/frappe/frappe-bench/logs
@@ -137,7 +137,7 @@ services:
     environment:
       BACKEND: backend:8000
       FRAPPE_SITE_NAME_HEADER: atd.mmis.space
-      SOCKETIO: websocket:9000
+      SOCKETIO: websocket:6379
       UPSTREAM_REAL_IP_ADDRESS: 127.0.0.1
       UPSTREAM_REAL_IP_HEADER: X-Forwarded-For
       UPSTREAM_REAL_IP_RECURSIVE: "off"
