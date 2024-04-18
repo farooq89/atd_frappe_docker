@@ -223,6 +223,8 @@ services:
       - logs:/home/frappe/frappe-bench/logs
     depends_on:
       - configurator
+      - redis-cache
+      - redis-queue
 
 volumes:
   db-data:
