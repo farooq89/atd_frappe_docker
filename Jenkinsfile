@@ -19,7 +19,7 @@ pipeline {
                         }]
                     '''
                     
-                    // Set the APPS_JSON environment variable1231
+                    // Set the APPS_JSON environment variable
                     env.APPS_JSON = appsJson
 
                     // test123
