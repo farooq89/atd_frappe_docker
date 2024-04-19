@@ -19,7 +19,7 @@ services:
     entrypoint:
       - bash
       - -c
-    # add redis_socketio for backward compatibility
+    # add redis_socketio for backward compatibility123
     command:
       - >
         ls -1 apps > sites/apps.txt;
