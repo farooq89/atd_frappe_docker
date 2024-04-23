@@ -4,7 +4,7 @@ services:
   backend:
     # test123123
     # image: frappe/erpnext:v14
-    image: usman89/myrepo:version15
+    image: usman89/myrepo:latest
     deploy:
       restart_policy:
         condition: on-failure
@@ -13,7 +13,7 @@ services:
       - logs:/home/frappe/frappe-bench/logs
 
   configurator:
-    image: usman89/myrepo:version15
+    image: usman89/myrepo:latest
     deploy:
       restart_policy:
         condition: none
@@ -41,7 +41,7 @@ services:
       - logs:/home/frappe/frappe-bench/logs
 
   create-site:
-    image: usman89/myrepo:version15
+    image: usman89/myrepo:latest
     deploy:
       restart_policy:
         condition: none
@@ -122,7 +122,7 @@ services:
       - db-data:/var/lib/mysql
 
   frontend1:
-    image: usman89/myrepo:version15
+    image: usman89/myrepo:latest
     depends_on:
       - websocket
     # image: frappe/erpnext:v14
@@ -149,7 +149,7 @@ services:
 
   queue-long:
     #image: frappe/erpnext:v14
-    image: usman89/myrepo:version15
+    image: usman89/myrepo:latest
     deploy:
       restart_policy:
         condition: on-failure
@@ -164,7 +164,7 @@ services:
 
   queue-short:
     #image: frappe/erpnext:v14
-    image: usman89/myrepo:version15
+    image: usman89/myrepo:latest
     deploy:
       restart_policy:
         condition: on-failure
@@ -196,7 +196,7 @@ services:
 
   scheduler:
     # image: frappe/erpnext:v14
-    image: usman89/myrepo:version15
+    image: usman89/myrepo:latest
     deploy:
       restart_policy:
         condition: on-failure
@@ -209,7 +209,7 @@ services:
     
 
   websocket:
-    #image: usman89/myrepo:version15
+    #image: usman89/myrepo:latest
     image: frappe/erpnext:v14
     deploy:
       restart_policy:
