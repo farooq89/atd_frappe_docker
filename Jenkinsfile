@@ -39,8 +39,7 @@ pipeline {
                     --build-arg=NODE_VERSION=18.10.0 \
                     --build-arg=APPS_JSON_BASE64=$APPS_JSON_BASE64 \
                     --tag=usman89/myrepo:Slim_v2 \
-                    --file=images/custom/Containerfile \
-                    --no-cache .
+                    --file=images/custom/Containerfile .
                     '''
                 }
             }
