@@ -8,25 +8,25 @@ pipeline {
     
     }
     stages {
-        stage('Setting app.json variable') {
-            steps {
-                script {
-                    // Define the APPS_JSON variable
-                    def appsJson = '''
-                        [{
-                            "url": "https://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@github.com/associated-terminals/associated_terminals.git",
-                            "branch": "master"
-                        }]
-                    '''
+        // stage('Setting app.json variable') {
+        //     steps {
+        //         script {
+        //             // Define the APPS_JSON variable
+        //             def appsJson = '''
+        //                 [{
+        //                     "url": "https://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@github.com/associated-terminals/associated_terminals.git",
+        //                     "branch": "master"
+        //                 }]
+        //             '''
                     
-                    // Set the APPS_JSON environment variable
-                    env.APPS_JSON = appsJson
+        //             // Set the APPS_JSON environment variable
+        //             env.APPS_JSON = appsJson
 
-                    // test1231
-                    env.APPS_JSON_BASE64 = sh(script: "echo \${APPS_JSON} | base64 -w 0", returnStdout: true).trim()
-                }
-            }
-        }
+        //             // test1231
+        //             env.APPS_JSON_BASE64 = sh(script: "echo \${APPS_JSON} | base64 -w 0", returnStdout: true).trim()
+        //         }
+        //     }
+        // }
         stage('Build Custom Image') {
             steps {
                 script {
