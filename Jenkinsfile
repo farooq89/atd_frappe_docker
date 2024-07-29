@@ -5,28 +5,29 @@ pipeline {
         DOCKER_HUB_REPO = 'usman89/myrepo'
         IMAGE_NAME = 'Slim_v2'
         DOCKERHUB_CREDENTIALS= credentials('dockerhub')
+        GITHUB_TOKEN = credentials('GIT_TOKEN')
     
     }
     stages {
-        // stage('Setting app.json variable') {
-        //     steps {
-        //         script {
-        //             // Define the APPS_JSON variablee
-        //             def appsJson = '''
-        //                 [{
-        //                     "url": "https://github.com/associated-terminals/associated_terminals.git",
-        //                     "branch": "master"
-        //                 }]
-        //             '''
+        stage('Setting app.json variable') {
+            steps {
+                script {
+                    // Define the APPS_JSON variablee
+                    def appsJson = '''
+                        [{
+                            "url": "https://${GITHUB_TOKEN}github.com/associated-terminals/associated_terminals.git",
+                            "branch": "master"
+                        }]
+                    '''
                     
-        //             // Set the APPS_JSON environment variable
-        //             env.APPS_JSON = appsJson
+                    // Set the APPS_JSON environment variable
+                    env.APPS_JSON = appsJson
 
-        //             // test1231
-        //             env.APPS_JSON_BASE64 = sh(script: "echo \${APPS_JSON} | base64 -w 0", returnStdout: true).trim()
-        //         }
-        //     }
-        // }
+                    // test1231
+                    env.APPS_JSON_BASE64 = sh(script: "echo \${APPS_JSON} | base64 -w 0", returnStdout: true).trim()
+                }
+            }
+        }
         stage('Build Custom Image') {
             steps {
                 script {
