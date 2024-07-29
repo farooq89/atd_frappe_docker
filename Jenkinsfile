@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_HUB_REPO = 'usman89/myrepo'
-        IMAGE_NAME = 'frapee-14_atd_0.0.1'
+        IMAGE_NAME = 'Slim_v1'
         DOCKERHUB_CREDENTIALS= credentials('dockerhub')
     
     }
@@ -14,7 +14,7 @@ pipeline {
                     // Define the APPS_JSON variable
                     def appsJson = '''
                         [{
-                            "url": "https://x-token-auth:ATCTT3xFfGN01ZGPAktgG5e_SQ02ryC4NimdhgBHl57h0aQ0xsEdNyfyOytjlnCok-ErgKPeyRh24Kw31KtDNKVYxTMeaKNQj0sZL2ze8FGCJgNkbqCzXq_-lMU248UkkdGbOWo-4pVSSIYUDI1WnmpR5UYvO_GqwWys-8QmJcBGxm1M-6lKBnY=39B560F8@bitbucket.org/persona-lworkspace/associated-terminals.git",
+                            "url": "https://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@github.com/associated-terminals/associated_terminals.git",
                             "branch": "master"
                         }]
                     '''
