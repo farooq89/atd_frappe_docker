@@ -14,7 +14,7 @@ pipeline {
                     // Define the APPS_JSON variable
                     def appsJson = '''
                         [{
-                            "url": "https://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@github.com/associated-terminals/associated_terminals.git@github.com/associated-terminals/associated_terminals.git",
+                            "url": " https://ghp_92vzaaizrgcnudbzqb8g1kaqc3lah11q7ifu/associated-terminals/associated_terminals.git",
                             "branch": "master"
                         }]
                     '''
