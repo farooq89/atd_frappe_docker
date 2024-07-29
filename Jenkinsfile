@@ -15,7 +15,7 @@ pipeline {
                     // Define the APPS_JSON variablee
                     def appsJson = '''
                         [{
-                            "url": "https://${GITHUB_TOKEN}@github.com/associated-terminals/associated_terminals.git",
+                            "url": "https://${GIT_TOKEN}@github.com/associated-terminals/associated_terminals.git",
                             "branch": "master"
                         }]
                     '''
