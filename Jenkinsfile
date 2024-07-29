@@ -33,11 +33,11 @@ pipeline {
                     sh '''
                     docker build \
                     --build-arg=FRAPPE_PATH=https://github.com/frappe/frappe \
-                    --build-arg=FRAPPE_BRANCH=version-14 \
-                    --build-arg=PYTHON_VERSION=3.11.6 \
+                    --build-arg=FRAPPE_BRANCH=version-15 \
+                    --build-arg=python:3.11-slim \
                     --build-arg=NODE_VERSION=18.10.0 \
                     --build-arg=APPS_JSON_BASE64=$APPS_JSON_BASE64 \
-                    --tag=usman89/myrepo:frapee-14_atd_0.0.1 \
+                    --tag=usman89/myrepo:Slim_v1 \
                     --file=images/custom/Containerfile \
                     --no-cache .
                     '''
@@ -72,34 +72,34 @@ pipeline {
         //         }
         //     }
         // }
-        stage('Deployment'){
-         steps{
-            sshagent(credentials:['114']){
-               script {
-                        sh 'set -x'
-                        sh '''
-                            ssh -o StrictHostKeyChecking=no ubuntu@192.168.10.114 "
-                                pwd \\
-                                && echo "devops@m1cromerg3r" | sudo -S sudo su \\
-                                && if [ -d ATD_frappe_docker ]
-                                then
-                                    cd ATD_frappe_docker
-                                    sudo git pull
-                                else
-                                    git clone https://github.com/farooq89/ATD_frappe_docker.git
-                                    cd ATD_frappe_docker
-                                fi \\
-                                && pwd \\
-                                && sudo docker pull usman89/myrepo:frapee-14_atd_0.0.1 \\
-                                && sudo docker compose -f pwd.yml down \\
-                                && sudo docker compose -f pwd.yml up -d \\
-                                && sleep 100 
-                            "
-                       '''
-                    }
-                }
-            }
-        }
+        // stage('Deployment'){
+        //  steps{
+        //     sshagent(credentials:['114']){
+        //        script {
+        //                 sh 'set -x'
+        //                 sh '''
+        //                     ssh -o StrictHostKeyChecking=no ubuntu@192.168.10.114 "
+        //                         pwd \\
+        //                         && echo "devops@m1cromerg3r" | sudo -S sudo su \\
+        //                         && if [ -d ATD_frappe_docker ]
+        //                         then
+        //                             cd ATD_frappe_docker
+        //                             sudo git pull
+        //                         else
+        //                             git clone https://github.com/farooq89/ATD_frappe_docker.git
+        //                             cd ATD_frappe_docker
+        //                         fi \\
+        //                         && pwd \\
+        //                         && sudo docker pull usman89/myrepo:frapee-14_atd_0.0.1 \\
+        //                         && sudo docker compose -f pwd.yml down \\
+        //                         && sudo docker compose -f pwd.yml up -d \\
+        //                         && sleep 100 
+        //                     "
+        //                '''
+        //             }
+        //         }
+        //     }
+        // }
     }
     post {
     always {
