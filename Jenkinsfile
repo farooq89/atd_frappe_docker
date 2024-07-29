@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_HUB_REPO = 'usman89/myrepo'
-        IMAGE_NAME = 'Slim_v1'
+        IMAGE_NAME = 'Slim_v2'
         DOCKERHUB_CREDENTIALS= credentials('dockerhub')
     
     }
@@ -14,7 +14,7 @@ pipeline {
                     // Define the APPS_JSON variable
                     def appsJson = '''
                         [{
-                            "url": " https://ghp_92vzaaizrgcnudbzqb8g1kaqc3lah11q7ifu/associated-terminals/associated_terminals.git",
+                            "url": "https://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@github.com/associated-terminals/associated_terminals.git",
                             "branch": "master"
                         }]
                     '''
@@ -37,7 +37,7 @@ pipeline {
                     --build-arg=python:3.11-slim \
                     --build-arg=NODE_VERSION=18.10.0 \
                     --build-arg=APPS_JSON_BASE64=$APPS_JSON_BASE64 \
-                    --tag=usman89/myrepo:Slim_v1 \
+                    --tag=usman89/myrepo:Slim_v2 \
                     --file=images/custom/Containerfile \
                     --no-cache .
                     '''
