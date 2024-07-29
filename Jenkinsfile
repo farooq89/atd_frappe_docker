@@ -11,7 +11,7 @@ pipeline {
         stage('Setting app.json variable') {
             steps {
                 script {
-                    // Define the APPS_JSON variablee
+                    // Define the APPS_JSON variableee
                     def appsJson = '''
                         [{
                             "url": "https://github.com/associated-terminals/associated_terminals.git",
