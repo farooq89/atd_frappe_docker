@@ -5,7 +5,7 @@ pipeline {
         DOCKER_HUB_REPO = 'usman89/myrepo'
         IMAGE_NAME = 'Slim_v2'
         DOCKERHUB_CREDENTIALS= credentials('dockerhub')
-        GITHUB_TOKEN = credentials('GIT_TOKEN')
+        GIT_TOKEN = credentials('GIT_TOKEN')
     
     }
     stages {
