@@ -6,6 +6,7 @@ pipeline {
         IMAGE_NAME = 'Slim_v2'
         DOCKERHUB_CREDENTIALS= credentials('dockerhub')
         GIT_TOKEN = credentials('GIT_TOKEN')
+        TOKEN = credentials('TOKEN')
     
     }
     stages {
@@ -15,7 +16,7 @@ pipeline {
                     // Define the APPS_JSON variablee
                     def appsJson = '''
                         [{
-                            "url": "https://${GIT_TOKEN}@github.com/associated-terminals/associated_terminals.git",
+                            "url": "https://${TOKEN}@github.com/associated-terminals/associated_terminals.git",
                             "branch": "master"
                         }]
                     '''
