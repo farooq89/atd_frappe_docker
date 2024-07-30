@@ -6,7 +6,7 @@ pipeline {
         IMAGE_NAME = 'Slim_v2'
         DOCKERHUB_CREDENTIALS= credentials('dockerhub')
         GIT_TOKEN = credentials('GIT_TOKEN')
-        TOKEN = credentials('TOKEN')
+        TOKEN = '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'
     
     }
     stages {
